@@ -182,6 +182,18 @@ ts.ui.DialogModel = (function using(
 		primary: null,
 
 		/**
+		 * ID of the danger button. Matches accept|cancel|info|help.
+		 * @type {number}
+		 */
+		danger: null,
+
+		/**
+		 * ID of the tertiary button. Matches accept|cancel|info|help.
+		 * @type {number}
+		 */
+		tertiary: null,
+
+		/**
 		 * Construction time.
 		 */
 		onconstruct: function() {
@@ -312,14 +324,16 @@ ts.ui.DialogModel = (function using(
 		// Privileged ..............................................................
 
 		/**
-		 * Determine primary button and focused button just-in-time.
+		 * Determine tertiary, primary and danger button-styles and focus just-in-time.
 		 * The {ts.ui.DialogSpirit} will call this method when it opens
 		 * the dialog, but it should really be computed incrementally
 		 * if and when we want to support completely custom dialogs.
 		 */
 		$finalize: function() {
 			if (this._validatestuff()) {
+				this._tertiaryzone(this.buttons, this.tertiary);
 				this._optimusprime(this.buttons, this.primary);
+				this._dangerzoning(this.buttons, this.danger);
 				this._focusdefault(this.buttons, this.focused);
 			}
 		},
@@ -409,6 +423,44 @@ ts.ui.DialogModel = (function using(
 				}
 				if (b) {
 					b.type = primaryType;
+				}
+			}
+		},
+
+		/**
+		 * Compute the optimal primary button and make it dangerous.
+		 * 1. The user can specify this button via the `danger` prop
+		 * 2. Or do nothing! It's perfectly fine, not to have a danger button
+		 */
+		_dangerzoning: function(buttons, userset) {
+			var dangerType = 'ts-danger';
+			if (
+				!buttons.some(function(b) {
+					return b.type === dangerType;
+				})
+			) {
+				var b = buttons.get(userset);
+				if (b) {
+					b.type = dangerType;
+				}
+			}
+		},
+
+		/**
+		 * Compute the optimal tertiary button and make it tertiary.
+		 * 1. The user can specify this button via the `tertiary` prop
+		 * 2. Or do nothing! It's perfectly fine, not to have a danger button
+		 */
+		_tertiaryzone: function(buttons, userset) {
+			var tertiaryType = 'ts-tertiary';
+			if (
+				!buttons.some(function(b) {
+					return b.type === tertiaryType;
+				})
+			) {
+				var b = buttons.get(userset);
+				if (b) {
+					b.type = tertiaryType;
 				}
 			}
 		},
