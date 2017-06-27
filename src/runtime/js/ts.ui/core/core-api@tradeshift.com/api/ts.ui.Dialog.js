@@ -155,16 +155,22 @@ ts.ui.Dialog.DEFAULT_TIME = 1500;
 	 */
 	function getmodel(type, note, strings, config) {
 		return Dialog(
-			GuiObject.extendmissing(config, {
-				type: type,
-				icon: geticon(type),
-				items: [
-					{
-						item: 'text',
-						text: tostring(strings[0])
-					}
-				]
-			})
+			GuiObject.extendmissing(
+				config,
+				GuiObject.extendmissing(
+					{ tertiary: 'cancel' },
+					GuiObject.extendmissing(type === Dialog.DANGER ? { danger: 'accept' } : {}, {
+						type: type,
+						icon: geticon(type),
+						items: [
+							{
+								item: 'text',
+								text: tostring(strings[0])
+							}
+						]
+					})
+				)
+			)
 		)
 			.acceptButton(
 				type === Dialog.SUCCESS
