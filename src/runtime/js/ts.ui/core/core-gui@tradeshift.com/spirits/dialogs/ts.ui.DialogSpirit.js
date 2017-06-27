@@ -285,20 +285,21 @@ ts.ui.DialogSpirit = (function using(Dialog, Client, chained, Type) {
 			_willopen: function() {
 				this._trapattention();
 				if (this._ismodelled()) {
+					this.css.add('ts-bg-white');
 					switch (this._model.type) {
-						case Dialog.INFO:
-						case Dialog.CONFIRM:
-							this.css.add('ts-bg-darkened');
-							break;
 						case Dialog.SUCCESS:
-							this.css.add('ts-bg-green');
+							this.css.add('ts-accent-green');
 							break;
 						case Dialog.WARNING:
-							this.css.add('ts-bg-yellow');
+							this.css.add('ts-accent-orange');
 							break;
-						case Dialog.ERROR:
+						case Dialog.CONFIRM:
+						case Dialog.INFO:
+							this.css.add('ts-accent-blue');
+							break;
 						case Dialog.DANGER:
-							this.css.add('ts-bg-red');
+						case Dialog.ERROR:
+							this.css.add('ts-accent-red');
 							break;
 					}
 				}
