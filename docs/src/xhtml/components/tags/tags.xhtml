@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tags</title>
+	<object data="tabs.xhtml"></object>
+</head>
+<body>
+<header data-ts="TopBar"></header>
+<main data-ts="Main">
+	<article>
+		<h1>Tags</h1>
+		<section class="desc">
+			<p>WIP</p>
+		</section>
+		<section>
+			<h3>Key-only</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key only</dt>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Value-only</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption>Value only</figcaption>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Key-Value</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Key with multiple values</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key</dt>
+							<dd>Value 1</dd>
+							<dd>Value 2</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with single value</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key 1</dt>
+							<dt>Key 2</dt>
+							<dd>Value</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple keys with multiple values</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key 1</dt>
+							<dt>Key 2</dt>
+							<dd>Value 1</dd>
+							<dd>Value 2</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple sets of key-values</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key 1</dt>
+							<dt>Key 2</dt>
+							<dd>Value</dd>
+						</dl>
+						<dl>
+							<dt>Other Key</dt>
+							<dd>Other Value</dd>
+						</dl>
+						<dl>
+							<dt>Lonely Key</dt>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional label</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption>Optional label</figcaption>
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional icon</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption><i class="ts-icon-star" /></figcaption>
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional clickability</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('yea!')">
+						<figcaption><i class="ts-icon-star" /></figcaption>
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional delete button</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<figcaption><i class="ts-icon-star" /></figcaption>
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+						<del onclick="ts.ui.Notification.info('delete clicked')"></del>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Optional locked look</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag" class="ts-tag-locked">
+						<figcaption><i class="ts-icon-star" /></figcaption>
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+						<del onclick="ts.ui.Notification.info('delete clicked')"></del>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>List of Tags (maximized)</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<ul data-ts="Tags">
+						<li>
+							<figure data-ts="Tag">
+								<dl>
+									<dt>Key</dt>
+									<dd>Value</dd>
+								</dl>
+							</figure>
+						</li>
+						<li>
+							<figure data-ts="Tag">
+								<dl>
+									<dt>Key</dt>
+									<dd>Value</dd>
+								</dl>
+							</figure>
+						</li>
+					</ul>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>List of Tags</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+					</figure>
+					<figure data-ts="Tag">
+						<dl>
+							<dt>Key</dt>
+							<dd>Value</dd>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+	</article>
+</main>
+</body>
+</html>
