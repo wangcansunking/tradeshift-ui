@@ -18,60 +18,258 @@
 				<li>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.Tag({
-								data: 'Key only'
-							}, '#tag-keyonly');
+							ts.ui.get('#tag-keyonly', tag => {
+								tag.render({
+									data: 'Key only'
+								})
+							});
 						</script>
 					</figure>
 				</li>
 				<li>
-					<div id="tag-keyonly"></div>
+					<figure id="tag-keyonly" data-ts="Tag"></figure>
 				</li>
 			</ul>
 		</section>
 		<section>
-			<h3>Value-only</h3>
-
+			<h3>Value/Label-only</h3>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-valonly', tag => {
+								tag.render({
+									label: 'Value/Label only'
+								})
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-valonly" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Key-Value</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-keyval', tag => {
+								tag.render({
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-keyval" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Key with multiple values</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-keyvals', tag => {
+								tag.render({
+									data: new Map([
+										['Key', ['Value 1', 'Value 2']]
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-keyvals" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Multiple keys with single value</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-keysval', tag => {
+								tag.render({
+									data: new Map([
+										[['Key 1', 'Key 2'], 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-keysval" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Multiple keys with multiple values</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-keysvals', tag => {
+								tag.render({
+									data: new Map([
+										[['Key 1', 'Key 2'], ['Value 1', 'Value 2']]
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-keysvals" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
-			<h3>Multiple sets of key-values</h3>
-
+			<h3>Multiple sets of key-values (W3C)</h3>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-multikeysvals', tag => {
+								tag.render({
+									data: new Map([
+										[['Key 1', 'Key 2'], 'Value'],
+										['Other Key', 'Other Value'],
+										['Lonely Key'],
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-multikeysvals" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Optional label</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-optlabel', tag => {
+								tag.render({
+									label: 'Optional label',
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-optlabel" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Optional icon</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-opticon', tag => {
+								tag.render({
+									icon: 'ts-icon-star',
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-opticon" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Optional clickability</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-optclick', tag => {
+								tag.render({
+									onclick: () => {
+										ts.ui.Notification.success('yea!');
+									},
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-optclick" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Optional delete button</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-optdel', tag => {
+								tag.render({
+									ondelete: () => {
+										ts.ui.Notification.info('delete clicked');
+									},
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-optdel" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>Optional locked look</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-optlock', tag => {
+								tag.render({
+									locked: true,
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-optlock" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 		<section>
 			<h3>List of Tags (maximized)</h3>
@@ -79,7 +277,32 @@
 		</section>
 		<section>
 			<h3>List of Tags</h3>
-
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-elem1', tag => {
+								tag.render({
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+							ts.ui.get('#tag-elem2', tag => {
+								tag.render({
+									data: new Map([
+										['Key', 'Value']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-elem1" data-ts="Tag"></figure>
+					<figure id="tag-elem2" data-ts="Tag"></figure>
+				</li>
+			</ul>
 		</section>
 	</article>
 </main>

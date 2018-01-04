@@ -10,8 +10,6 @@
 	"api/ts.ui.Notification.js",
 	"api/ts.ui.Note.js",
 	"api/ts.ui.Main.js",
-	"api/ts.ui.Tag.js",
-	"api/ts.ui.Tags.js",
 
 	"models/ts.ui.Model.js",
 	"models/ts.ui.Collection.js",

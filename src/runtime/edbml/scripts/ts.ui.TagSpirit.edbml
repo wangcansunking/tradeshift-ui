@@ -1,0 +1,49 @@
+<!DOCTYPE edbml>
+<script>
+	<?input name="tag" type="ts.ui.TagModel"?>
+	
+	var hascpt = tag.icon || tag.label;
+	var hasdat = tag.data.size;
+	var hasdel = tag._deletable;
+	var dohack = tag.tempdirtyflag;
+
+	if (hascpt) {
+		<figcaption>
+			if (tag.icon) {
+				<i class="${tag.icon}"></i>
+			} else if (tag.label) {
+				out.html += tag.label;
+			}
+		</figcaption>
+	}
+	if (hasdat) {
+		tag.data.forEach(function(val, key) {
+			<dl>
+				if (key) {
+          if (Array.isArray(key)) {
+            key.forEach(dt);
+          } else {
+            dt(key);
+          }
+         }
+         if (val) {
+          if (Array.isArray(val)) {
+            val.forEach(dd);
+          } else {
+            dd(val);
+          }
+         }
+      </dl>
+		});
+	}
+	if (hasdel) {
+		<del onclick="#{tag.delete()}"></del>
+	}
+	
+	function dt(term) {
+		<dt>${term}</dt>
+	}
+	function dd(definition) {
+		<dd>${definition}</dd>
+	}
+</script>

@@ -14,6 +14,12 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		item: 'tag',
 
 		/**
+		 * Type is really the CSS classname.
+		 * @type {string}
+		 */
+		type: '',
+
+		/**
 		 * Tag label.
 		 * @type {string}
 		 */
@@ -26,24 +32,6 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		icon: null,
 
 		/**
-		 * Type is really the CSS classname.
-		 * @type {string}
-		 */
-		type: '',
-
-		/**
-		 * Something to execute onclick.
-		 * @type {function}
-		 */
-		onclick: null,
-
-		/**
-		 * Something to execute ondelete.
-		 * @type {function}
-		 */
-		ondelete: null,
-
-		/**
 		 * No default keyboard support,
 		 * unless it has onclick or ondelete.
 		 * @type {number}
@@ -51,47 +39,56 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		tabindex: -1,
 
 		/**
-		 * All the key and value sets
-		 * @type {Map}
+		 * Something to execute onclick.
+		 * @type {function}
 		 */
-		_data: new Map(),
+		onclick: {
+			getter: function() {
+				return this._onclick;
+			},
+			setter: confirmed('(function)')(function(onclick) {
+				this._onclick = onclick;
+				this._clickable = !!onclick;
+				console.log('clickable', this._clickable);
+				this.$dirty();
+			})
+		},
+
+		/**
+		 * Something to execute ondelete.
+		 * @type {function}
+		 */
+		ondelete: {
+			getter: function() {
+				return this._ondelete;
+			},
+			setter: confirmed('(function)')(function(ondelete) {
+				this._ondelete = ondelete;
+				this._deletable = !!ondelete;
+				console.log('deletable', this._deletable);
+				this.$dirty();
+			})
+		},
 
 		/**
 		 * Data accessor
+		 * @see this._data
 		 * @type {Map}
 		 */
 		data: {
 			getter: function() {
-				console.log('data get');
+				if (!this._data) {
+					this._data = new Map();
+				} else if (typeof this._data === 'string') {
+					this._data = new Map([[this._data]]);
+				}
 				return this._data;
 			},
 			setter: confirmed('string|map')(function(data) {
-				console.log('data set', arguments);
-				if (typeof d === 'string') {
-					data = new Map([[data]]);
-				}
 				this._data = data;
-				console.log('data is set ', this._data);
+				this.$dirty();
 			})
 		},
-
-		// /**
-		//  * Data accessor
-		//  * @returns {Map|undefined}
-		//  */
-		// data: confirmed('(string|map)')(function(data) {
-		// 	if (data === undefined) {
-		// 		return this._data;
-		// 	}
-		//
-		// 	if (typeof data === 'string') {
-		// 		data = new Map([
-		// 			[data]
-		// 		]);
-		// 	}
-		// 	this._data = data;
-		// 	console.log('data is set ', this._data);
-		// }),
 
 		/**
 		 * Is the tag locked?
@@ -129,23 +126,27 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			}
 		}),
 
-		/**
-		 * Bounce model to HTML.
-		 * @return {string}
-		 */
-		render: function() {
-			console.log('render');
-			return ts.ui.tag.edbml(this._model);
-		},
-
 		// Private .................................................................
 
 		/**
-		 * The actual contents of the caption,
-		 * this will be extra useful once we want to
-		 * allow more than just a label or icon in there.
-		 * @type {*}
+		 * All the key and value sets
+		 * @type {Map}
 		 */
-		_caption: null
+		_data: null,
+
+		/**
+		 * Is the tag clickable?
+		 * @type {boolean}
+		 */
+		_clickable: false,
+
+		/**
+		 * Is the tag deletable?
+		 * @type {boolean}
+		 */
+		_deletable: false,
+
+		_onclick: null,
+		_ondelete: null
 	});
 })(gui.Combo.chained, gui.Arguments.confirmed, gui.Type);

@@ -26,11 +26,11 @@
 			</figure>
 		</section>
 		<section>
-			<h3>Value-only</h3>
+			<h3>Value/Label-only</h3>
 			<figure data-ts="DoxMarkup">
 				<script>
 					<figure data-ts="Tag">
-						<figcaption>Value only</figcaption>
+						<figcaption>Value/Label only</figcaption>
 					</figure>
 				</script>
 				<output/>
@@ -97,7 +97,7 @@
 			</figure>
 		</section>
 		<section>
-			<h3>Multiple sets of key-values</h3>
+			<h3>Multiple sets of key-values (W3C)</h3>
 			<figure data-ts="DoxMarkup">
 				<script>
 					<figure data-ts="Tag">
@@ -112,6 +112,30 @@
 						</dl>
 						<dl>
 							<dt>Lonely Key</dt>
+						</dl>
+					</figure>
+				</script>
+				<output/>
+			</figure>
+		</section>
+		<section>
+			<h3>Multiple sets of key-values (WHATWG)</h3>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<figure data-ts="Tag">
+						<dl>
+							<div>
+								<dt>Key 1</dt>
+								<dt>Key 2</dt>
+								<dd>Value</dd>
+							</div>
+							<div>
+								<dt>Other Key</dt>
+								<dd>Other Value</dd>
+							</div>
+							<div>
+								<dt>Lonely Key</dt>
+							</div>
 						</dl>
 					</figure>
 				</script>
