@@ -14,6 +14,7 @@
     <link rel="prefetch" title="Tags" href="tags.html">
     <link rel="prefetch" title="Labels" href="labels.html">
     <link rel="prefetch" title="JSON API" href="json.html">
+    <link rel="prefetch" title="Gallery" href="gallery.html">
     <script>
         ts.dox.tabs()
     </script>
@@ -51,18 +52,40 @@
                     </figure>
                 </section>
                 <section>
-                    <h3><span>Value/Label-only</span></h3>
-                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cfigcaption%3EValue%2FLabel%20only%3C%2Ffigcaption%3E%0A%3C%2Ffigure%3E">
+                    <h3><span>Label-only</span></h3>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cfigcaption%3ELabel%20only%3C%2Ffigcaption%3E%0A%3C%2Ffigure%3E">
                         <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
                         <div class="tabpanels">
                             <pre class="prism language-markup">
 <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>Value/Label only<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>Label only<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
 </pre>
                             <div class="output">
                                 <figure data-ts="Tag">
-                                    <figcaption>Value/Label only</figcaption>
+                                    <figcaption>Label only</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </section>
+                <section>
+                    <h3><span>Value-only</span></h3>
+                    <figure data-ts="DoxMarkup" data-ts.code="%3Cfigure%20data-ts%3D%22Tag%22%3E%0A%09%3Cdl%3E%0A%09%09%3Cdd%3EValue%20only%3C%2Fdd%3E%0A%09%3C%2Fdl%3E%0A%3C%2Ffigure%3E">
+                        <input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Atrue%2C%22runs%22%3Afalse%2C%22flip%22%3Afalse%7D">
+                        <div class="tabpanels">
+                            <pre class="prism language-markup">
+<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span> <span class="token attr-name">data-ts</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Tag<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">&gt;</span></span>Value only<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span></code>
+</pre>
+                            <div class="output">
+                                <figure data-ts="Tag">
+                                    <dl>
+                                        <dd>Value only</dd>
+                                    </dl>
                                 </figure>
                             </div>
                         </div>

@@ -32,6 +32,25 @@
 			</ul>
 		</section>
 		<section>
+			<h3>Label-only</h3>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-valonly', tag => {
+								tag.render({
+									label: 'Label only'
+								})
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<figure id="tag-valonly" data-ts="Tag"></figure>
+				</li>
+			</ul>
+		</section>
+		<section>
 			<h3>Value/Label-only</h3>
 			<ul class="splitscreen">
 				<li>
@@ -39,7 +58,9 @@
 						<script type="runnable">
 							ts.ui.get('#tag-valonly', tag => {
 								tag.render({
-									label: 'Value/Label only'
+									data: new Map([
+										[undefined, 'Value only']
+									])
 								})
 							});
 						</script>

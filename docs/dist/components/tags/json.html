@@ -14,6 +14,7 @@
     <link rel="prefetch" title="Tags" href="tags.html">
     <link rel="prefetch" title="Labels" href="labels.html">
     <link rel="prefetch" title="JSON API" href="json.html">
+    <link rel="prefetch" title="Gallery" href="gallery.html">
     <script>
         ts.dox.tabs()
     </script>
@@ -55,19 +56,47 @@
                     </div>
                 </section>
                 <section>
-                    <h3><span>Value/Label-only</span></h3>
+                    <h3><span>Label-only</span></h3>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-valonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09label%3A%20&apos;Value%2FLabel%20only&apos;%0A%09%7D)%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-valonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09label%3A%20&apos;Label%20only&apos;%0A%09%7D)%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-valonly', tag => { tag.render({ label: 'Value/Label only' }) });
+                                        ts.ui.get('#tag-valonly', tag => { tag.render({ label: 'Label only' }) });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-valonly&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-		label<span class="token punctuation">:</span> <span class="token string">&apos;Value/Label only&apos;</span>
+		label<span class="token punctuation">:</span> <span class="token string">&apos;Label only&apos;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
+</pre>
+                                    </div>
+                                </figure>
+                            </li>
+                            <li>
+                                <figure id="tag-valonly" data-ts="Tag"></figure>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3><span>Value/Label-only</span></h3>
+                    <div class="splitscreen-container">
+                        <ul class="splitscreen">
+                            <li>
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-valonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5Bundefined%2C%20&apos;Value%20only&apos;%5D%0A%09%09%5D)%0A%09%7D)%0A%7D)%3B">
+                                    <script type="runnable">
+                                        ts.ui.get('#tag-valonly', tag => { tag.render({ data: new Map([ [undefined, 'Value only'] ]) }) });
+                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
+                                    <div class="tabpanels">
+                                        <pre class="prism language-javascript">
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-valonly&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+			<span class="token punctuation">[</span>undefined<span class="token punctuation">,</span> <span class="token string">&apos;Value only&apos;</span><span class="token punctuation">]</span>
+		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
