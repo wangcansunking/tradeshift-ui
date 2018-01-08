@@ -1,80 +1,142 @@
 @import 'ts-variables.less';
 
 /**
-@TODO: align del & lock icons
- */
+@TODO padding/margin -right for DL, Figcaption + DL (JS ellipsis detection?)
+@TODO ts-tag-deletable class added with MutationObservers
+**/
 
 // Tag .........................................................................
 
+@tag-padding: @ts-unit-half;
+@tag-margin: @ts-unit-half;
+@tag-height: @ts-unit-plus;
+@tag-icon-width: @tag-height;
+
 .ts-tag {
-	.ts-mixin-rounded();
 	display: inline-block;
-	padding-left: @ts-unit-half;
-	height: @ts-unit-plus;
-	line-height: @ts-unit-plus;
-	margin: 0 @ts-unit-half @ts-unit-half 0;
+	display: inline-flex;
+	max-height: @tag-height;
+	max-width: 100%;
+	padding: 0;
+	margin: 0 @tag-margin @tag-margin 0;
+	border-radius: @ts-radius;
 	background: @ts-lite-liter;
 	color: @ts-black;
-	
-	&:last-child {
-		margin-right: 0;
-	}
-	
+	line-height: 0;
+	font-size: 0;
+	border-collapse: separate;
+
 	// Reset
+	dl,
+	dt,
+	dd {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 	dl,
 	dl > div,
 	dt,
 	dd,
 	figcaption {
+		.ts-mixin-fixheight(@tag-height);
 		.ts-mixin-selectable();
-		.ts-mixin-text-ellipsis();
-		white-space: nowrap;
 		display: inline-block;
+		min-width: 0;
 		padding: 0;
 		margin: 0;
-		font-size: @ts-fontsize;
+		font-size: 0;
 		font-weight: @ts-fontweight;
+		// max-width: 100%;
 	}
-	
-	figcaption:last-child,
-	dl:last-child {
-		margin-right: @ts-unit-half;
-	}
-	
-	// Margin before [Label]
+	dl,
 	figcaption {
-		& + dl,
-		& + del {
-			margin-left: @ts-unit-quarter;
+		// max-width: ~"calc(100% - @{tag-padding})";
+		overflow: hidden;
+	}
+	dt,
+	dd,
+	figcaption {
+		line-height: @tag-height;
+		&,
+		&:before,
+		&:after {
+			font-size: @ts-fontsize;
+			line-height: @tag-height;
+			vertical-align: bottom;
 		}
 	}
-	
+	dl,
+	dl > div {
+		&:before,
+		&:after {
+			font-size: @ts-fontsize;
+			line-height: @tag-height;
+			vertical-align: bottom;
+		}
+	}
+
+	// Tag outer right-margin (loose list)
+	&:last-child {
+		margin-right: 0;
+	}
+
+	// Tag inner left-padding
+	dl:first-child {
+		padding-left: @tag-padding;
+	}
+
+	// Tag inner right-padding
+	// figcaption + dl {
+	// 	max-width: ~"calc(100% - @{tag-icon-width})";
+	// }
+
+	dl:last-child {
+		margin-right: @tag-margin;
+		padding-right: @tag-padding;
+	}
+	// dl:only-child {
+	// 	max-width: 100%;
+	// }
+	// &:not(.ts-tag-locked) {
+	// 	figcaption + dl:last-child {
+	// 		@tag-icon-width_padding: @tag-icon-width + @tag-padding;
+	// 		max-width: ~"calc(100% - @{tag-icon-width_padding})";
+	// 	}
+	// }
+
+	// Label/Icon
+	figcaption {
+		.ts-mixin-fix(@tag-icon-width, @tag-height);
+		text-align: center;
+		vertical-align: top;
+	}
+
 	// Dash between Key-Value sets
 	dl + dl,
 	dl > div + div {
 		&:before {
-			content: ' — ';
+			content: '\00a0– ';
 		}
 	}
-	
+
 	// Key: comma separators and colon terminator
 	dt {
 		font-weight: @ts-fontweight-semibold;
 		text-transform: uppercase;
 		&:after {
-			content: ',';
+			content: ',\00a0';
 		}
-		& + dd,
 		&:last-of-type {
 			&:after {
-				content: ':';
+				content: ':\00a0';
 			}
 		}
 		&:only-child,
 		& + dt:last-child,
-		& + dt + dt:last-child, 
-		& + dt + dt + dt:last-child, 
-		& + dt + dt + dt + dt:last-child, 
+		& + dt + dtlast-child,
+		& + dt + dt + dt:last-child,
+		& + dt + dt + dt + dt:last-child,
 		& + dt + dt + dt + dt + dt:last-child {
 			&:after {
 				content: '';
@@ -85,7 +147,7 @@
 	// Value: comma separators
 	dd {
 		&:after {
-			content: ',';
+			content: ',\00a0';
 		}
 		&:last-of-type:after {
 			content: '';
@@ -112,19 +174,28 @@
 
 	// Locked look
 	&.ts-tag-locked {
+		padding-right: @tag-icon-width;
 		figcaption,
 		dd,
 		dt,
 		&:after {
 			color: @ts-medium;
 		}
+		// figcaption + dl:last-child {
+		// 	@tag-icon-width_padding: @tag-icon-width + @tag-padding;
+		// 	max-width: ~"calc(100% - @{tag-icon-width_padding})";
+		// 	padding-right: 0;
+		// }
+		dl:last-child {
+			margin-right: 0;
+		}
 		&:after {
 			.ts-mixin-icon(@ts-fontsize-big);
-			margin-right: @ts-unit-quarter;
+			position: absolute;
+			top: (@ts-unit - @ts-unit-quarter);
+			right: @ts-unit-quarter + 2px; // @TODO fix with SVGs...
+			vertical-align: top;
 			content: 'V'; // ts-icon-locked
-		}
-		dl:last-of-type {
-			margin-right: @ts-unit-quarter;
 		}
 		del {
 			display: none;
@@ -136,14 +207,18 @@
 
 	// Delete button
 	del {
-		.ts-mixin-fix(@ts-unit-plus, @ts-unit-plus);
+		.ts-mixin-fix(@tag-icon-width, @tag-height);
+		position: relative;
 		display: inline-block;
-		line-height: @ts-unit-plus;
+		line-height: @tag-height;
 		text-decoration: none;
+		vertical-align: top;
 		&:after {
 			.ts-mixin-icon(@ts-fontsize-big);
+			.ts-mixin-fix(@tag-icon-width, @tag-height);
+			display: inline-block;
+			line-height: @tag-height;
 			color: @ts-medium;
-			margin-left: 8.5px; // @TODO Fix with SVGs.....
 			content: '*'; // ts-icon-close
 		}
 		.ts-device-mouse &:hover {
@@ -153,9 +228,57 @@
 			}
 		}
 	}
-	
+}
+
+// Tags ........................................................................
+
+.ts-tags {
+	li {
+		margin-bottom: @tag-margin;
+		.ts-tag {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: flex-start;
+			padding-right: 0;
+
+			&.ts-tag-locked {
+				padding-right: @tag-icon-width;
+			}
+
+			&:after {
+				position: absolute;
+				top: 50%;
+				margin: 0;
+				right: @ts-unit-quarter + 1.5px; // @TODO Fix with SVGs.....
+			}
+
+			dl,
+			dt,
+			dd {
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+
+			figcaption {
+				flex: initial;
+			}
+			dl {
+				flex: 1;
+			}
+			del {
+				flex: @tag-icon-width;
+			}
+		}
+	}
+}
+
+
+.ts-tag {
 	// Color schemes .............................................................
-	
+
 	&.ts-danger {
 		background: @ts-red;
 		&,
@@ -174,7 +297,7 @@
 			color: @ts-red-darker;
 		}
 	}
-	
+
 	&.ts-warning {
 		background: @ts-orange;
 		&,
@@ -193,7 +316,7 @@
 			color: @ts-yellow-text;
 		}
 	}
-	
+
 	&.ts-success {
 		background: @ts-green;
 		&,
@@ -212,7 +335,7 @@
 			color: @ts-green;
 		}
 	}
-	
+
 	&.ts-blue {
 		background: @ts-blue;
 		&,
@@ -229,50 +352,6 @@
 		dd,
 		dt {
 			color: @ts-blue;
-		}
-	}
-}
-
-// Tags ........................................................................
-
-.ts-tags {
-	li {
-		margin-bottom: @ts-unit-half;
-		.ts-tag {
-			position: relative;
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-			justify-content: flex-start;
-			padding-right: 0;
-			
-			&.ts-tag-locked {
-				padding-right: @ts-unit-plus;
-			}
-			
-			&:after {
-				position: absolute;
-				top: 50%;
-				margin: 0;
-				right: @ts-unit-quarter + 1.5px; // @TODO Fix with SVGs.....
-			}
-			
-			figcaption,
-			dl,
-			dd,
-			dt {
-				overflow: hidden;
-			}
-			
-			figcaption {
-				flex: initial;
-			}
-			dl {
-				flex: 1;
-			}
-			del {
-				flex: @ts-unit-plus;
-			}
 		}
 	}
 }
