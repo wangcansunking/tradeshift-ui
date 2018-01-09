@@ -9,11 +9,11 @@
 
 @tag-padding: @ts-unit-half;
 @tag-margin: @ts-unit-half;
+@tag-spacing: @ts-unit-quarter;
 @tag-height: @ts-unit-plus;
 @tag-icon-width: @tag-height;
 
 .ts-tag {
-	display: inline-block;
 	display: inline-flex;
 	max-height: @tag-height;
 	max-width: 100%;
@@ -28,13 +28,6 @@
 
 	// Reset
 	dl,
-	dt,
-	dd {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-	dl,
 	dl > div,
 	dt,
 	dd,
@@ -42,17 +35,11 @@
 		.ts-mixin-fixheight(@tag-height);
 		.ts-mixin-selectable();
 		display: inline-block;
-		min-width: 0;
 		padding: 0;
 		margin: 0;
 		font-size: 0;
 		font-weight: @ts-fontweight;
-		// max-width: 100%;
-	}
-	dl,
-	figcaption {
-		// max-width: ~"calc(100% - @{tag-padding})";
-		overflow: hidden;
+		min-width: 0;
 	}
 	dt,
 	dd,
@@ -76,6 +63,28 @@
 		}
 	}
 
+	// DL Flex Setup
+	dl,
+	dl > div {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+	// Text Overflow with Ellipsis
+	figcaption {
+		overflow: hidden;
+	}
+	dl,
+	dl > div,
+	dt,
+	dd {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
 	// Tag outer right-margin (loose list)
 	&:last-child {
 		margin-right: 0;
@@ -86,24 +95,10 @@
 		padding-left: @tag-padding;
 	}
 
-	// Tag inner right-padding
-	// figcaption + dl {
-	// 	max-width: ~"calc(100% - @{tag-icon-width})";
-	// }
-
+	//Tag inner right-padding
 	dl:last-child {
 		margin-right: @tag-margin;
-		padding-right: @tag-padding;
 	}
-	// dl:only-child {
-	// 	max-width: 100%;
-	// }
-	// &:not(.ts-tag-locked) {
-	// 	figcaption + dl:last-child {
-	// 		@tag-icon-width_padding: @tag-icon-width + @tag-padding;
-	// 		max-width: ~"calc(100% - @{tag-icon-width_padding})";
-	// 	}
-	// }
 
 	// Label/Icon
 	figcaption {
@@ -115,8 +110,12 @@
 	// Dash between Key-Value sets
 	dl + dl,
 	dl > div + div {
+		padding-left: @tag-spacing;
 		&:before {
-			content: '\00a0– ';
+			content: '–';
+		}
+		& > :first-child {
+			padding-left: @tag-spacing;
 		}
 	}
 
@@ -124,12 +123,13 @@
 	dt {
 		font-weight: @ts-fontweight-semibold;
 		text-transform: uppercase;
+		padding-right: @tag-spacing;
 		&:after {
-			content: ',\00a0';
+			content: ',';
 		}
 		&:last-of-type {
 			&:after {
-				content: ':\00a0';
+				content: ':';
 			}
 		}
 		&:only-child,
@@ -138,6 +138,7 @@
 		& + dt + dt + dt:last-child,
 		& + dt + dt + dt + dt:last-child,
 		& + dt + dt + dt + dt + dt:last-child {
+			padding-right: 0;
 			&:after {
 				content: '';
 			}
@@ -146,11 +147,15 @@
 
 	// Value: comma separators
 	dd {
+		padding-right: @tag-spacing;
 		&:after {
-			content: ',\00a0';
+			content: ',';
 		}
-		&:last-of-type:after {
-			content: '';
+		&:last-of-type {
+			padding-right: 0;
+			&:after {
+				content: '';
+			}
 		}
 	}
 
@@ -181,11 +186,6 @@
 		&:after {
 			color: @ts-medium;
 		}
-		// figcaption + dl:last-child {
-		// 	@tag-icon-width_padding: @tag-icon-width + @tag-padding;
-		// 	max-width: ~"calc(100% - @{tag-icon-width_padding})";
-		// 	padding-right: 0;
-		// }
 		dl:last-child {
 			margin-right: 0;
 		}
@@ -236,40 +236,9 @@
 	li {
 		margin-bottom: @tag-margin;
 		.ts-tag {
-			position: relative;
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-			justify-content: flex-start;
-			padding-right: 0;
-
-			&.ts-tag-locked {
-				padding-right: @tag-icon-width;
-			}
-
-			&:after {
-				position: absolute;
-				top: 50%;
-				margin: 0;
-				right: @ts-unit-quarter + 1.5px; // @TODO Fix with SVGs.....
-			}
-
-			dl,
-			dt,
-			dd {
-				text-overflow: ellipsis;
-				overflow: hidden;
-				white-space: nowrap;
-			}
-
-			figcaption {
-				flex: initial;
-			}
+			width: 100%;
 			dl {
 				flex: 1;
-			}
-			del {
-				flex: @tag-icon-width;
 			}
 		}
 	}
