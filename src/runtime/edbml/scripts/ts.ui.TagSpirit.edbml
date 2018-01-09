@@ -1,7 +1,7 @@
 <!DOCTYPE edbml>
 <script>
 	<?input name="tag" type="ts.ui.TagModel"?>
-	
+
 	var hascpt = tag.icon || tag.label;
 	var hasdat = tag.data.size;
 	var hasdel = tag._deletable;
@@ -37,9 +37,9 @@
 		});
 	}
 	if (hasdel) {
-		<del onclick="#{tag.delete()}"></del>
+		<del></del>
 	}
-	
+
 	function dt(term) {
 		<dt>${term}</dt>
 	}

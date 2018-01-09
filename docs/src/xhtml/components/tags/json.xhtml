@@ -6,11 +6,67 @@
 </head>
 <body>
 <header data-ts="TopBar"></header>
-<main data-ts="Main">
+<main data-ts="Main" class="doc-tags">
 	<article>
 		<h1>Tags JSON API</h1>
 		<section class="desc">
 			<p>WIP</p>
+		</section>
+		<section>
+			<div data-ts="DoxApi">
+				<script type="application/json">
+					{
+						name: "ts.ui.TagModel",
+						properties: [
+							{
+								name: "type",
+								type: "string",
+								desc: "The CSS classname."
+							},
+							{
+								name: "icon",
+								type: "string",
+								desc: "The icon's classname."
+							},
+							{
+								name: "tabindex",
+								type: "number",
+								desc: "The `tabindex` of the tag."
+							},
+							{
+								name: "data",
+								type: "(Map|string)",
+								desc: "The `keys` and `values` of the tag or the only `key` as a string."
+							},
+							{
+								name: "locked",
+								type: "boolean",
+								desc: "Tag is locked?"
+							},
+							{
+								name: "onclick",
+								type: "(Function)",
+								desc: "Called whenever the tag gets clicked."
+							},
+							{
+								name: "ondelete",
+								type: "(Function)",
+								desc: "Called whenever the tag gets deleted."
+							}
+						],
+						methods: [
+							{
+								name: "click",
+								desc: "Trigger a click on the tag if `onclick` is set."
+							},
+							{
+								name: "delete",
+								desc: "Trigger deletion of the tag if `ondelete` is set."
+							}
+						]
+					}
+				</script>
+			</div>
 		</section>
 		<section>
 			<h3>Key-only</h3>
@@ -20,38 +76,42 @@
 						<script type="runnable">
 							ts.ui.get('#tag-keyonly', tag => {
 								tag.render({
-									data: 'Key only'
+									data: 'Dragons!'
 								})
 							});
 						</script>
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-keyonly" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-keyonly" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
 		<section>
-			<h3>Label-only</h3>
+			<h3>Icon-only</h3>
 			<ul class="splitscreen">
 				<li>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.get('#tag-valonly', tag => {
+							ts.ui.get('#tag-icononly', tag => {
 								tag.render({
-									label: 'Label only'
+									icon: 'ts-icon-timer'
 								})
 							});
 						</script>
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-valonly" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-icononly" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
 		<section>
-			<h3>Value/Label-only</h3>
+			<h3>Value-only</h3>
 			<ul class="splitscreen">
 				<li>
 					<figure data-ts="DoxScript">
@@ -59,7 +119,7 @@
 							ts.ui.get('#tag-valonly', tag => {
 								tag.render({
 									data: new Map([
-										[undefined, 'Value only']
+										[undefined, 'Roll a d20']
 									])
 								})
 							});
@@ -67,7 +127,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-valonly" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-valonly" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -80,7 +142,7 @@
 							ts.ui.get('#tag-keyval', tag => {
 								tag.render({
 									data: new Map([
-										['Key', 'Value']
+										['Area of Origin', 'The Sword Coast']
 									])
 								});
 							});
@@ -88,7 +150,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-keyval" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-keyval" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -101,7 +165,7 @@
 							ts.ui.get('#tag-keyvals', tag => {
 								tag.render({
 									data: new Map([
-										['Key', ['Value 1', 'Value 2']]
+										['The Teeming Hive of Evil', ['Skullport', 'Port of Shadows']]
 									])
 								});
 							});
@@ -109,7 +173,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-keyvals" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-keyvals" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -122,7 +188,7 @@
 							ts.ui.get('#tag-keysval', tag => {
 								tag.render({
 									data: new Map([
-										[['Key 1', 'Key 2'], 'Value']
+										[['Facial Tentacles', 'Potent Psionics'], 'Mind Flayer']
 									])
 								});
 							});
@@ -130,7 +196,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-keysval" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-keysval" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -143,7 +211,7 @@
 							ts.ui.get('#tag-keysvals', tag => {
 								tag.render({
 									data: new Map([
-										[['Key 1', 'Key 2'], ['Value 1', 'Value 2']]
+										[['Magic-user', 'Undead'], ['Lich', 'Vampire']]
 									])
 								});
 							});
@@ -151,12 +219,14 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-keysvals" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-keysvals" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
 		<section>
-			<h3>Multiple sets of key-values (W3C)</h3>
+			<h3>Multiple sets of key-values</h3>
 			<ul class="splitscreen">
 				<li>
 					<figure data-ts="DoxScript">
@@ -164,9 +234,9 @@
 							ts.ui.get('#tag-multikeysvals', tag => {
 								tag.render({
 									data: new Map([
-										[['Key 1', 'Key 2'], 'Value'],
-										['Other Key', 'Other Value'],
-										['Lonely Key'],
+										['Acererak'],
+										['Alignment', ['Lawful', 'Evil']],
+										['Hobbies', 'Building Dungeons'],
 									])
 								});
 							});
@@ -174,29 +244,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-multikeysvals" data-ts="Tag"></figure>
-				</li>
-			</ul>
-		</section>
-		<section>
-			<h3>Optional label</h3>
-			<ul class="splitscreen">
-				<li>
-					<figure data-ts="DoxScript">
-						<script type="runnable">
-							ts.ui.get('#tag-optlabel', tag => {
-								tag.render({
-									label: 'Optional label',
-									data: new Map([
-										['Key', 'Value']
-									])
-								});
-							});
-						</script>
-					</figure>
-				</li>
-				<li>
-					<figure id="tag-optlabel" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-multikeysvals" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -208,9 +258,9 @@
 						<script type="runnable">
 							ts.ui.get('#tag-opticon', tag => {
 								tag.render({
-									icon: 'ts-icon-star',
+									icon: 'ts-icon-rating',
 									data: new Map([
-										['Key', 'Value']
+										['Dungeon', 'Tomb of Horrors']
 									])
 								});
 							});
@@ -218,7 +268,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-opticon" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-opticon" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -231,10 +283,11 @@
 							ts.ui.get('#tag-optclick', tag => {
 								tag.render({
 									onclick: () => {
+										console.log(arguments);
 										ts.ui.Notification.success('yea!');
 									},
 									data: new Map([
-										['Key', 'Value']
+										['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
 									])
 								});
 							});
@@ -242,7 +295,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-optclick" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-optclick" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -255,10 +310,10 @@
 							ts.ui.get('#tag-optdel', tag => {
 								tag.render({
 									ondelete: () => {
-										ts.ui.Notification.info('delete clicked');
+										ts.ui.Notification.info('Languages forgotten.');
 									},
 									data: new Map([
-										['Key', 'Value']
+										['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
 									])
 								});
 							});
@@ -266,7 +321,9 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-optdel" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-optdel" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -279,8 +336,12 @@
 							ts.ui.get('#tag-optlock', tag => {
 								tag.render({
 									locked: true,
+									ondelete: () => {
+										ts.ui.Notification.info('I am not visible anyway.');
+									},
+									icon: 'ts-icon-location',
 									data: new Map([
-										['Key', 'Value']
+										['Dungeon', 'Hidden Shrine of Tamoachan']
 									])
 								});
 							});
@@ -288,13 +349,11 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-optlock" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tag-optlock" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
-		</section>
-		<section>
-			<h3>List of Tags (maximized)</h3>
-
 		</section>
 		<section>
 			<h3>List of Tags</h3>
@@ -302,17 +361,20 @@
 				<li>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.get('#tag-elem1', tag => {
+							ts.ui.get('#tags-elem1', tag => {
 								tag.render({
 									data: new Map([
-										['Key', 'Value']
+										['Lich', 'Acererak']
 									])
 								});
 							});
-							ts.ui.get('#tag-elem2', tag => {
+							ts.ui.get('#tags-elem2', tag => {
 								tag.render({
+									ondelete: () => {
+										ts.ui.Notification.warning('I hope you know what you\'re doing...');
+									},
 									data: new Map([
-										['Key', 'Value']
+										['Beholder', 'Xanathar']
 									])
 								});
 							});
@@ -320,10 +382,20 @@
 					</figure>
 				</li>
 				<li>
-					<figure id="tag-elem1" data-ts="Tag"></figure>
-					<figure id="tag-elem2" data-ts="Tag"></figure>
+					<div class="doc-showcase">
+						<figure id="tags-elem1" data-ts="Tag"></figure>
+						<figure id="tags-elem2" data-ts="Tag"></figure>
+					</div>
 				</li>
 			</ul>
+		</section>
+
+		<section>
+			<h3>List of Tags (maximized)</h3>
+			<section data-ts="Note">
+				<i class="ts-icon-todo"></i>
+				<p>This API is under construction.</p>
+			</section>
 		</section>
 	</article>
 </main>

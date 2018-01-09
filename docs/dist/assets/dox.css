@@ -564,6 +564,12 @@ table.api th {
 .ts-mobile-only .doc-intro .intro-container .intro-img {
   display: none;
 }
+.doc-tags .doc-showcase {
+  background: #ffffff;
+  padding: 22px;
+  margin-bottom: 22px;
+  overflow-x: visible;
+}
 .ts-doxchrome .ts-sidebar,
 .ts-doxchrome .ts-topbarspinner {
   visibility: hidden;

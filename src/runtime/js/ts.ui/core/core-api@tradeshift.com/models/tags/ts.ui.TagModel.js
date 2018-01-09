@@ -22,6 +22,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		/**
 		 * Tag label.
 		 * @type {string}
+		 * @secret
 		 */
 		label: null,
 
@@ -49,7 +50,6 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			setter: confirmed('(function)')(function(onclick) {
 				this._onclick = onclick;
 				this._clickable = !!onclick;
-				console.log('clickable', this._clickable);
 				this.$dirty();
 			})
 		},
@@ -65,7 +65,6 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			setter: confirmed('(function)')(function(ondelete) {
 				this._ondelete = ondelete;
 				this._deletable = !!ondelete;
-				console.log('deletable', this._deletable);
 				this.$dirty();
 			})
 		},

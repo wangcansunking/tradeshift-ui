@@ -62,7 +62,6 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 			var spirit = this;
 			var model = this._model;
 			changes.forEach(function(c) {
-				console.log('c', c);
 				if (c.object === model && c.type === 'update') {
 					spirit._update(model);
 				}
@@ -92,7 +91,12 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		onevent: function(e) {
 			this.super.onevent(e);
 			if (e.type === 'click') {
-				this.click();
+				if (e.target && e.target.localName === 'del') {
+					e.stopPropagation();
+					this.delete();
+				} else {
+					this.click();
+				}
 			}
 		},
 
@@ -238,6 +242,9 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		 */
 		delete: chained(function() {
 			this._model.delete();
+			this.tick.time(function selfdestruct() {
+				this.dom.remove();
+			});
 		}),
 
 		// Private .................................................................

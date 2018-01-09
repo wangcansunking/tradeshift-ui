@@ -139,7 +139,7 @@
 				"path": "components/spinners/"
 			},
 			{
-				"label": "Tags",
+				"label": "Tags & Labels",
 				"icon": "docs-icon-tag-2",
 				"path": "components/tags/tags.html"
 			},

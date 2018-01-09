@@ -22,7 +22,7 @@
 
 <body>
     <header data-ts="TopBar"></header>
-    <main data-ts="Main">
+    <main data-ts="Main" class="doc-tags">
         <div data-ts="MainContent">
             <article>
                 <h1><span>Tags JSON API</span></h1>
@@ -30,19 +30,23 @@
                     <p>WIP</p>
                 </section>
                 <section>
+                    <div data-ts="DoxApi" data-ts.code="%7B%0A%09name%3A%20%22ts.ui.TagModel%22%2C%0A%09properties%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22type%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20CSS%20classname.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22icon%22%2C%0A%09%09%09type%3A%20%22string%22%2C%0A%09%09%09desc%3A%20%22The%20icon&apos;s%20classname.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22tabindex%22%2C%0A%09%09%09type%3A%20%22number%22%2C%0A%09%09%09desc%3A%20%22The%20%60tabindex%60%20of%20the%20tag.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22data%22%2C%0A%09%09%09type%3A%20%22(Map%7Cstring)%22%2C%0A%09%09%09desc%3A%20%22The%20%60keys%60%20and%20%60values%60%20of%20the%20tag%20or%20the%20only%20%60key%60%20as%20a%20string.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22locked%22%2C%0A%09%09%09type%3A%20%22boolean%22%2C%0A%09%09%09desc%3A%20%22Tag%20is%20locked%3F%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22onclick%22%2C%0A%09%09%09type%3A%20%22(Function)%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20tag%20gets%20clicked.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22ondelete%22%2C%0A%09%09%09type%3A%20%22(Function)%22%2C%0A%09%09%09desc%3A%20%22Called%20whenever%20the%20tag%20gets%20deleted.%22%0A%09%09%7D%0A%09%5D%2C%0A%09methods%3A%20%5B%0A%09%09%7B%0A%09%09%09name%3A%20%22click%22%2C%0A%09%09%09desc%3A%20%22Trigger%20a%20click%20on%20the%20tag%20if%20%60onclick%60%20is%20set.%22%0A%09%09%7D%2C%0A%09%09%7B%0A%09%09%09name%3A%20%22delete%22%2C%0A%09%09%09desc%3A%20%22Trigger%20deletion%20of%20the%20tag%20if%20%60ondelete%60%20is%20set.%22%0A%09%09%7D%0A%09%5D%0A%7D">
+                    </div>
+                </section>
+                <section>
                     <h3><span>Key-only</span></h3>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keyonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20&apos;Key%20only&apos;%0A%09%7D)%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keyonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20&apos;Dragons!&apos;%0A%09%7D)%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-keyonly', tag => { tag.render({ data: 'Key only' }) });
+                                        ts.ui.get('#tag-keyonly', tag => { tag.render({ data: 'Dragons!' }) });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-keyonly&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-		data<span class="token punctuation">:</span> <span class="token string">&apos;Key only&apos;</span>
+		data<span class="token punctuation">:</span> <span class="token string">&apos;Dragons!&apos;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
@@ -50,25 +54,27 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-keyonly" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-keyonly" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </section>
                 <section>
-                    <h3><span>Label-only</span></h3>
+                    <h3><span>Icon-only</span></h3>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-valonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09label%3A%20&apos;Label%20only&apos;%0A%09%7D)%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-icononly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09icon%3A%20&apos;ts-icon-timer&apos;%0A%09%7D)%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-valonly', tag => { tag.render({ label: 'Label only' }) });
+                                        ts.ui.get('#tag-icononly', tag => { tag.render({ icon: 'ts-icon-timer' }) });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-valonly&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-icononly&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-		label<span class="token punctuation">:</span> <span class="token string">&apos;Label only&apos;</span>
+		icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-timer&apos;</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
 </pre>
@@ -76,26 +82,28 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-valonly" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-icononly" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </section>
                 <section>
-                    <h3><span>Value/Label-only</span></h3>
+                    <h3><span>Value-only</span></h3>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-valonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5Bundefined%2C%20&apos;Value%20only&apos;%5D%0A%09%09%5D)%0A%09%7D)%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-valonly&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5Bundefined%2C%20&apos;Roll%20a%20d20&apos;%5D%0A%09%09%5D)%0A%09%7D)%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-valonly', tag => { tag.render({ data: new Map([ [undefined, 'Value only'] ]) }) });
+                                        ts.ui.get('#tag-valonly', tag => { tag.render({ data: new Map([ [undefined, 'Roll a d20'] ]) }) });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-valonly&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span>undefined<span class="token punctuation">,</span> <span class="token string">&apos;Value only&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span>undefined<span class="token punctuation">,</span> <span class="token string">&apos;Roll a d20&apos;</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -104,7 +112,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-valonly" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-valonly" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -114,16 +124,16 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keyval&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keyval&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Area%20of%20Origin&apos;%2C%20&apos;The%20Sword%20Coast&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-keyval', tag => { tag.render({ data: new Map([ ['Key', 'Value'] ]) }); });
+                                        ts.ui.get('#tag-keyval', tag => { tag.render({ data: new Map([ ['Area of Origin', 'The Sword Coast'] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-keyval&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Area of Origin&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;The Sword Coast&apos;</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -132,7 +142,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-keyval" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-keyval" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -142,16 +154,16 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keyvals&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20%5B&apos;Value%201&apos;%2C%20&apos;Value%202&apos;%5D%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keyvals&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;The%20Teeming%20Hive%20of%20Evil&apos;%2C%20%5B&apos;Skullport&apos;%2C%20&apos;Port%20of%20Shadows&apos;%5D%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-keyvals', tag => { tag.render({ data: new Map([ ['Key', ['Value 1', 'Value 2']] ]) }); });
+                                        ts.ui.get('#tag-keyvals', tag => { tag.render({ data: new Map([ ['The Teeming Hive of Evil', ['Skullport', 'Port of Shadows']] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-keyvals&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Value 1&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value 2&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;The Teeming Hive of Evil&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Skullport&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Port of Shadows&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -160,7 +172,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-keyvals" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-keyvals" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -170,16 +184,16 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keysval&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B%5B&apos;Key%201&apos;%2C%20&apos;Key%202&apos;%5D%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keysval&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B%5B&apos;Facial%20Tentacles&apos;%2C%20&apos;Potent%20Psionics&apos;%5D%2C%20&apos;Mind%20Flayer&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-keysval', tag => { tag.render({ data: new Map([ [['Key 1', 'Key 2'], 'Value'] ]) }); });
+                                        ts.ui.get('#tag-keysval', tag => { tag.render({ data: new Map([ [['Facial Tentacles', 'Potent Psionics'], 'Mind Flayer'] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-keysval&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;Key 1&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Key 2&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;Facial Tentacles&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Potent Psionics&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">&apos;Mind Flayer&apos;</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -188,7 +202,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-keysval" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-keysval" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -198,16 +214,16 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keysvals&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B%5B&apos;Key%201&apos;%2C%20&apos;Key%202&apos;%5D%2C%20%5B&apos;Value%201&apos;%2C%20&apos;Value%202&apos;%5D%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-keysvals&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B%5B&apos;Magic-user&apos;%2C%20&apos;Undead&apos;%5D%2C%20%5B&apos;Lich&apos;%2C%20&apos;Vampire&apos;%5D%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-keysvals', tag => { tag.render({ data: new Map([ [['Key 1', 'Key 2'], ['Value 1', 'Value 2']] ]) }); });
+                                        ts.ui.get('#tag-keysvals', tag => { tag.render({ data: new Map([ [['Magic-user', 'Undead'], ['Lich', 'Vampire']] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-keysvals&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;Key 1&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Key 2&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Value 1&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value 2&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;Magic-user&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Undead&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Lich&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Vampire&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -216,28 +232,30 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-keysvals" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-keysvals" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </section>
                 <section>
-                    <h3><span>Multiple sets of key-values (W3C)</span></h3>
+                    <h3><span>Multiple sets of key-values</span></h3>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-multikeysvals&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B%5B&apos;Key%201&apos;%2C%20&apos;Key%202&apos;%5D%2C%20&apos;Value&apos;%5D%2C%0A%09%09%09%5B&apos;Other%20Key&apos;%2C%20&apos;Other%20Value&apos;%5D%2C%0A%09%09%09%5B&apos;Lonely%20Key&apos;%5D%2C%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-multikeysvals&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Acererak&apos;%5D%2C%0A%09%09%09%5B&apos;Alignment&apos;%2C%20%5B&apos;Lawful&apos;%2C%20&apos;Evil&apos;%5D%5D%2C%0A%09%09%09%5B&apos;Hobbies&apos;%2C%20&apos;Building%20Dungeons&apos;%5D%2C%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-multikeysvals', tag => { tag.render({ data: new Map([ [['Key 1', 'Key 2'], 'Value'], ['Other Key', 'Other Value'], ['Lonely Key'], ]) }); });
+                                        ts.ui.get('#tag-multikeysvals', tag => { tag.render({ data: new Map([ ['Acererak'], ['Alignment', ['Lawful', 'Evil']], ['Hobbies', 'Building Dungeons'], ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-multikeysvals&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">&apos;Key 1&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Key 2&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Other Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Other Value&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Lonely Key&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Acererak&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Alignment&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Lawful&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Evil&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Hobbies&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Building Dungeons&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -246,36 +264,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-multikeysvals" data-ts="Tag"></figure>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <section>
-                    <h3><span>Optional label</span></h3>
-                    <div class="splitscreen-container">
-                        <ul class="splitscreen">
-                            <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-optlabel&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09label%3A%20&apos;Optional%20label&apos;%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
-                                    <script type="runnable">
-                                        ts.ui.get('#tag-optlabel', tag => { tag.render({ label: 'Optional label', data: new Map([ ['Key', 'Value'] ]) }); });
-                                    </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
-                                    <div class="tabpanels">
-                                        <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-optlabel&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-		label<span class="token punctuation">:</span> <span class="token string">&apos;Optional label&apos;</span><span class="token punctuation">,</span>
-		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
-		<span class="token punctuation">]</span><span class="token punctuation">)</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
-</pre>
-                                    </div>
-                                </figure>
-                            </li>
-                            <li>
-                                <figure id="tag-optlabel" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-multikeysvals" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -285,17 +276,17 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-opticon&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09icon%3A%20&apos;ts-icon-star&apos;%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-opticon&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09icon%3A%20&apos;ts-icon-rating&apos;%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Dungeon&apos;%2C%20&apos;Tomb%20of%20Horrors&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-opticon', tag => { tag.render({ icon: 'ts-icon-star', data: new Map([ ['Key', 'Value'] ]) }); });
+                                        ts.ui.get('#tag-opticon', tag => { tag.render({ icon: 'ts-icon-rating', data: new Map([ ['Dungeon', 'Tomb of Horrors'] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-opticon&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
-		icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-star&apos;</span><span class="token punctuation">,</span>
+		icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-rating&apos;</span><span class="token punctuation">,</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Dungeon&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Tomb of Horrors&apos;</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -304,7 +295,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-opticon" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-opticon" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -314,19 +307,20 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-optclick&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.success(&apos;yea!&apos;)%3B%0A%09%09%7D%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="var%20%24__arguments%20%3D%20arguments%3B%0Ats.ui.get(&apos;%23tag-optclick&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09onclick%3A%20function()%20%7B%0A%09%09%09console.log(%24__arguments)%3B%0A%09%09%09ts.ui.Notification.success(&apos;yea!&apos;)%3B%0A%09%09%7D%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Vision&apos;%2C%20%5B&apos;Blindsight&apos;%2C%20&apos;Truesight&apos;%2C%20&apos;Darkvision&apos;%5D%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-optclick', tag => { tag.render({ onclick: () => { ts.ui.Notification.success('yea!'); }, data: new Map([ ['Key', 'Value'] ]) }); });
+                                        ts.ui.get('#tag-optclick', tag => { tag.render({ onclick: () => { console.log(arguments); ts.ui.Notification.success('yea!'); }, data: new Map([ ['Vision', ['Blindsight', 'Truesight', 'Darkvision']] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-optclick&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		onclick<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
 			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">success<span class="token punctuation">(</span></span><span class="token string">&apos;yea!&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">,</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Vision&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Blindsight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Truesight&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Darkvision&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -335,7 +329,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-optclick" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-optclick" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -345,19 +341,19 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-optdel&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09ondelete%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.info(&apos;delete%20clicked&apos;)%3B%0A%09%09%7D%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-optdel&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09ondelete%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.info(&apos;Languages%20forgotten.&apos;)%3B%0A%09%09%7D%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Languages&apos;%2C%20%5B&apos;Sylvan&apos;%2C%20&apos;Common&apos;%2C%20&apos;Draconic&apos;%2C%20&apos;Giant&apos;%5D%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-optdel', tag => { tag.render({ ondelete: () => { ts.ui.Notification.info('delete clicked'); }, data: new Map([ ['Key', 'Value'] ]) }); });
+                                        ts.ui.get('#tag-optdel', tag => { tag.render({ ondelete: () => { ts.ui.Notification.info('Languages forgotten.'); }, data: new Map([ ['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-optdel&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		ondelete<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;delete clicked&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;Languages forgotten.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 		<span class="token punctuation">}</span><span class="token punctuation">,</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Languages&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&apos;Sylvan&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Common&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Draconic&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Giant&apos;</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -366,7 +362,9 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-optdel" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-optdel" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -376,17 +374,21 @@
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-optlock&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09locked%3A%20true%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-optlock&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09locked%3A%20true%2C%0A%09%09ondelete%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.info(&apos;I%20am%20not%20visible%20anyway.&apos;)%3B%0A%09%09%7D%2C%0A%09%09icon%3A%20&apos;ts-icon-location&apos;%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Dungeon&apos;%2C%20&apos;Hidden%20Shrine%20of%20Tamoachan&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-optlock', tag => { tag.render({ locked: true, data: new Map([ ['Key', 'Value'] ]) }); });
+                                        ts.ui.get('#tag-optlock', tag => { tag.render({ locked: true, ondelete: () => { ts.ui.Notification.info('I am not visible anyway.'); }, icon: 'ts-icon-location', data: new Map([ ['Dungeon', 'Hidden Shrine of Tamoachan'] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
 <code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-optlock&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		locked<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+		ondelete<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">info<span class="token punctuation">(</span></span><span class="token string">&apos;I am not visible anyway.&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		icon<span class="token punctuation">:</span> <span class="token string">&apos;ts-icon-location&apos;</span><span class="token punctuation">,</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Dungeon&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Hidden Shrine of Tamoachan&apos;</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -395,36 +397,39 @@
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-optlock" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tag-optlock" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
-                </section>
-                <section>
-                    <h3><span>List of Tags (maximized)</span></h3>
                 </section>
                 <section>
                     <h3><span>List of Tags</span></h3>
                     <div class="splitscreen-container">
                         <ul class="splitscreen">
                             <li>
-                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tag-elem1&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B%0Ats.ui.get(&apos;%23tag-elem2&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Key&apos;%2C%20&apos;Value&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
+                                <figure data-ts="DoxScript" class="runnable" data-ts.code="ts.ui.get(&apos;%23tags-elem1&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Lich&apos;%2C%20&apos;Acererak&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B%0Ats.ui.get(&apos;%23tags-elem2&apos;%2C%20function(tag)%20%7B%0A%09tag.render(%7B%0A%09%09ondelete%3A%20function()%20%7B%0A%09%09%09ts.ui.Notification.warning(&apos;I%20hope%20you%20know%20what%20you%5C&apos;re%20doing...&apos;)%3B%0A%09%09%7D%2C%0A%09%09data%3A%20new%20Map(%5B%0A%09%09%09%5B&apos;Beholder&apos;%2C%20&apos;Xanathar&apos;%5D%0A%09%09%5D)%0A%09%7D)%3B%0A%7D)%3B">
                                     <script type="runnable">
-                                        ts.ui.get('#tag-elem1', tag => { tag.render({ data: new Map([ ['Key', 'Value'] ]) }); }); ts.ui.get('#tag-elem2', tag => { tag.render({ data: new Map([ ['Key', 'Value'] ]) }); });
+                                        ts.ui.get('#tags-elem1', tag => { tag.render({ data: new Map([ ['Lich', 'Acererak'] ]) }); }); ts.ui.get('#tags-elem2', tag => { tag.render({ ondelete: () => { ts.ui.Notification.warning('I hope you know what you\'re doing...'); }, data: new Map([ ['Beholder',
+                                        'Xanathar'] ]) }); });
                                     </script><input type="hidden" value="%7B%22show%22%3Atrue%2C%22outs%22%3Afalse%2C%22runs%22%3Atrue%2C%22flip%22%3Afalse%7D">
                                     <div class="tabpanels">
                                         <pre class="prism language-javascript">
-<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-elem1&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<code>ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tags-elem1&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Lich&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Acererak&apos;</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tag-elem2&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&apos;#tags-elem2&apos;</span><span class="token punctuation">,</span> tag <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
 	tag<span class="token punctuation">.</span><span class="token function">render<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+		ondelete<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+			ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span><span class="token function">warning<span class="token punctuation">(</span></span><span class="token string">&apos;I hope you know what you\&apos;re doing...&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
 		data<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-			<span class="token punctuation">[</span><span class="token string">&apos;Key&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Value&apos;</span><span class="token punctuation">]</span>
+			<span class="token punctuation">[</span><span class="token string">&apos;Beholder&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;Xanathar&apos;</span><span class="token punctuation">]</span>
 		<span class="token punctuation">]</span><span class="token punctuation">)</span>
 	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code>
@@ -433,11 +438,20 @@ ts<span class="token punctuation">.</span>ui<span class="token punctuation">.</s
                                 </figure>
                             </li>
                             <li>
-                                <figure id="tag-elem1" data-ts="Tag"></figure>
-                                <figure id="tag-elem2" data-ts="Tag"></figure>
+                                <div class="doc-showcase">
+                                    <figure id="tags-elem1" data-ts="Tag"></figure>
+                                    <figure id="tags-elem2" data-ts="Tag"></figure>
+                                </div>
                             </li>
                         </ul>
                     </div>
+                </section>
+                <section>
+                    <h3><span>List of Tags (maximized)</span></h3>
+                    <section data-ts="Note">
+                        <i class="ts-icon-todo"></i>
+                        <p>This API is under construction.</p>
+                    </section>
                 </section>
             </article>
         </div>
