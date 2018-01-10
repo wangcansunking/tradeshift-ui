@@ -30,7 +30,9 @@
 	dl,
 	dl > div,
 	dt,
+	dt > p,
 	dd,
+	dd > p,
 	figcaption {
 		.ts-mixin-fixheight(@tag-height);
 		.ts-mixin-selectable();
@@ -42,7 +44,9 @@
 		min-width: 0;
 	}
 	dt,
+	dt > p,
 	dd,
+	dd > p,
 	figcaption {
 		line-height: @tag-height;
 		&,
@@ -79,7 +83,9 @@
 	dl,
 	dl > div,
 	dt,
-	dd {
+	dt > p,
+	dd,
+	dd > p {
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
@@ -121,9 +127,13 @@
 
 	// Key: comma separators and colon terminator
 	dt {
-		font-weight: @ts-fontweight-semibold;
-		text-transform: uppercase;
 		padding-right: @tag-spacing;
+		&,
+		& > p {
+			font-weight: @ts-fontweight-semibold;
+			text-transform: uppercase;
+		}
+		
 		&:after {
 			content: ',';
 		}
@@ -163,7 +173,7 @@
 	&.ts-tag-clickable {
 		figcaption,
 		dd,
-		dt {
+		dt, {
 			color: @ts-blue;
 		}
 		.ts-device-mouse &:not(.ts-tag-locked):hover {

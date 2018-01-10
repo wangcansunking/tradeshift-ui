@@ -17,20 +17,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		 * Type is really the CSS classname.
 		 * @type {string}
 		 */
-		type: '',
-
-		/**
-		 * Tag label.
-		 * @type {string}
-		 * @secret
-		 */
-		label: null,
-
-		/**
-		 * Tag icon.
-		 * @type {string}
-		 */
-		icon: null,
+		type: null,
 
 		/**
 		 * No default keyboard support,
@@ -38,6 +25,36 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		 * @type {number}
 		 */
 		tabindex: -1,
+
+		/**
+		 * Tag icon or userimage.
+		 * @type {string|ts.ui.UserImageModel}
+		 */
+		icon: {
+			getter: function() {
+				return this._icon;
+			},
+			setter: confirmed('(string|object)')(function(icon) {
+				if (typeof icon === 'object') {
+					if (icon.item) {
+						switch (icon.item) {
+							case 'icon':
+								icon = new ts.ui.IconModel(icon);
+								break;
+							case 'userimage':
+								icon.size = ts.ui.UNIT;
+								icon = new ts.ui.UserImageModel(icon);
+								break;
+						}
+					} else {
+						console.error('"icon.item" is not defined in ts.ui.Tag instance.');
+						return;
+					}
+				}
+				this._icon = icon;
+				this.$dirty();
+			})
+		},
 
 		/**
 		 * Something to execute onclick.
@@ -49,7 +66,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			},
 			setter: confirmed('(function)')(function(onclick) {
 				this._onclick = onclick;
-				this._clickable = !!onclick;
+				this.clickable = !!onclick;
 				this.$dirty();
 			})
 		},
@@ -64,10 +81,22 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			},
 			setter: confirmed('(function)')(function(ondelete) {
 				this._ondelete = ondelete;
-				this._deletable = !!ondelete;
+				this.deletable = !!ondelete;
 				this.$dirty();
 			})
 		},
+
+		/**
+		 * Is the tag deletable?
+		 * @type {boolean}
+		 */
+		deletable: false,
+
+		/**
+		 * Is the tag clickable?
+		 * @type {boolean}
+		 */
+		clickable: false,
 
 		/**
 		 * Data accessor
@@ -80,10 +109,12 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 					this._data = new Map();
 				} else if (typeof this._data === 'string') {
 					this._data = new Map([[this._data]]);
+				} else if (Array.isArray(this._data)) {
+					this._data = new Map(this._data);
 				}
 				return this._data;
 			},
-			setter: confirmed('string|map')(function(data) {
+			setter: confirmed('string|array|map')(function(data) {
 				this._data = data;
 				this.$dirty();
 			})
@@ -125,6 +156,10 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			}
 		}),
 
+		render: function() {
+			return ts.ui.tag.edbml(this);
+		},
+
 		// Private .................................................................
 
 		/**
@@ -133,17 +168,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		 */
 		_data: null,
 
-		/**
-		 * Is the tag clickable?
-		 * @type {boolean}
-		 */
-		_clickable: false,
-
-		/**
-		 * Is the tag deletable?
-		 * @type {boolean}
-		 */
-		_deletable: false,
+		_icon: null,
 
 		_onclick: null,
 		_ondelete: null

@@ -1,480 +1,625 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tags & Labels</title>
+	<title>Fancy HTML</title>
 	<object data="tabs.xhtml"></object>
 </head>
 <body>
 <header data-ts="TopBar"></header>
 <main data-ts="Main" class="doc-tags">
 	<article>
-		<h1>Tags & Labels</h1>
+		<h1>Tags Fancy HTML API</h1>
 		<section class="desc">
-			<p>Tags represent a set of interactive keywords that help label, organize, and categorize objects.</p>
-		</section>
-		<section>
-			<h3>Tag Markup</h3>
-			<p>When building the <code>HTML</code> for the tag yourself, this is how it should look:</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<!--
-						Always use a FIGURE element,
-						You can add `ts-tag-locked` or `ts-tag-clickable` as a class.
-					-->
-					<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
-						<!--
-							If you want to have an icon or `UserImage` use a FIGCAPTION.
-						-->
-						<figcaption><i class="ts-icon-dispute" /></figcaption>
-						<!--
-							You can have zero or more DL elements for your keys & values.
-						-->
-						<dl>
-							<!--
-								You can start your DL with one or more DT or DD elements,
-							-->
-							<dt>Magic-user</dt>
-							<dt>Human</dt>
-							<!--
-								and have zero or more DD elements following it.
-							-->
-							<dd>Merlin</dd>
-							<dd>Rincewind</dd>
-						</dl>
-						<!--
-							In case you want to add more key/value sets, start another DL
-						-->
-						<dl>
-							<dt>Beholder</dt>
-							<dd>Xanathar</dd>
-						</dl>
-						<!--
-							It is possible to have only a single DD in a DL.
-						-->
-						<dl>
-							<dd>Acererak</dd> <!-- (Even though this is against the spec) -->
-						</dl>
-						<!--
-							It is possible to have only a single DT in a DL
-						-->
-						<dl>
-							<dt>Non-magical characters</dt>
-							<!--
-								No such thing as non-magical, no DD is needed here =)
-							-->
-						</dl>
-						<!--
-							Finally, an optional DEL element will serve as your delete button
-						 -->
-						<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
-					</figure>
-				</script>
-			</figure>
-			<p>This is how the code from above will look in action:</p>
-			<div class="doc-showcase">
-				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
-					<figcaption><i class="ts-icon-dispute" /></figcaption>
-					<dl>
-						<dt>Magic-user</dt>
-						<dt>Human</dt>
-						<dd>Merlin</dd>
-						<dd>Rincewind</dd>
-					</dl>
-					<dl>
-						<dt>Beholder</dt>
-						<dd>Xanathar</dd>
-					</dl>
-					<dl>
-						<dd>Acererak</dd>
-					</dl>
-					<dl>
-						<dt>Non-magical characters</dt>
-					</dl>
-					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
-				</figure>
-			</div>
-			<p>&hellip;of course, it's quite a big tag, normally you'd present it like this:</p>
-			<div class="doc-showcase">
-				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
-					<figcaption><i class="ts-icon-dispute" /></figcaption>
-					<dl>
-						<dt>Magic-user</dt>
-						<dt>Human</dt>
-						<dd>Merlin</dd>
-						<dd>Rincewind</dd>
-					</dl>
-					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
-				</figure>
-				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
-					<figcaption><i class="ts-icon-dispute" /></figcaption>
-					<dl>
-						<dt>Beholder</dt>
-						<dd>Xanathar</dd>
-					</dl>
-					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
-				</figure>
-				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
-					<figcaption><i class="ts-icon-dispute" /></figcaption>
-					<dl>
-						<dd>Acererak</dd>
-					</dl>
-					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
-				</figure>
-				<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('I was clicked.')">
-					<figcaption><i class="ts-icon-dispute" /></figcaption>
-					<dl>
-						<dt>Non-magical characters</dt>
-					</dl>
-					<del onclick="ts.ui.Notification.success('I am getting deleted.')"></del>
-				</figure>
-			</div>
+			<p>Tags represent a set of interactive keywords that help to label, organize, and categorize objects.</p>
 		</section>
 		<section>
 			<h3>Key-only</h3>
-			<p>If you want to show an all uppercased <code>key</code> only, use a single <code>DT</code></p>
+			<p>If you want to show an all uppercased <code>key</code> only, use a <code>string</code> for <code>data-ts.data</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<dt>Dragons!</dt>
-						</dl>
-					</figure>
+					<figure
+						data-ts="Tag"
+						data-ts.data="Dragons!"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
 			<h3>Icon-only</h3>
-			<p>If you only want to show a single icon, use a single <code>FIGCAPTION</code>.</p>
+			<p>If you only want to show a single icon, just use <code>data-ts.icon</code> and use the classname of an <a data-ts="Button" href="/#components/icons/css.html">Icon</a>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<figcaption>
-							<i class="ts-icon-timer" />
-						</figcaption>
-					</figure>
+					<figure
+						data-ts="Tag"
+						data-ts.icon="ts-icon-timer"
+					/>
 				</script>
-				<output/>
-			</figure>
-			<p>This also works with the <a data-ts="Button" href="/#components/userimages/index.html"><code>UserImage</code></a>, just make sure to use a size of <code>22x22</code> pixels.</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<figure data-ts="Tag">
-						<figcaption>
-							<img
-								data-ts="UserImage"
-								src="assets/xanathar.png"
-								alt="Xanathar"
-								width="22"
-								height="22"
-							/>
-						</figcaption>
-					</figure>
-				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
 			<h3>Value-only</h3>
-			<p>If you fancy a simpler approach with lighter font weights and lowercase characters, use a single <code>DD</code>.
+			<section data-ts="Note">
+				<i class="ts-icon-info"></i>
+				<p>When passing complex data structures to <code>data-ts.data</code>, you need to <code>JSON.stringify()</code> the value and then pass it to <code>encodeURIComponent</code> to get a value that can be safely used as an attribute.</p>
+			</section>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				<p>Keep in mind that this structure will be converted into a <code>Map</code>, using non-unique <code>keys</code> will result in <strong>unreliable behavior</strong>!</p>
+			</section>
+			<p>If you fancy a simpler approach with lighter font weights and lowercase characters, use a <code>Map</code>-like <code>Array</code> with only a <code>value</code> and a falsy <code>key</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<dd>Roll a d20</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								[null, 'Roll a d20']
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5Bnull%2C%22Roll%20a%20d20%22%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
+
+		<p>It's also possible to set <code>data</code> (and all other attributes) later, through the JS API.</p>
+		<script>
+			ts.ui.ready(() => {
+				ts.ui.get('#tag-roll20', tag => {
+					tag.data = new Map([
+						[null, 'Roll a d20']
+					]);
+				});
+			});
+		</script>
+		<figure data-ts="DoxMarkup">
+			<script>
+				<scrxpt>
+					const data = encodeURIComponent(JSON.stringify(
+					));
+					ts.ui.ready(() => {
+						ts.ui.get('#tag-roll20', tag => {
+							tag.data = new Map([
+								[null, 'Roll a d20']
+							]);
+						});
+					});
+				</scrxpt>
+				<figure
+					id="tag-roll20"
+					data-ts="Tag"
+				/>
+			</script>
+			<output />
+		</figure>
 		<section>
 			<h3>Key-Value</h3>
-			<p>If you need a <code>key</code> with a <code>value</code> attached to it, use a <code>DT</code> and a <code>DD</code>.
+			<p>If you need a <code>key</code> with a <code>value</code> attached to it, use the <code>Map</code>-like <code>Array</code> structure like before, but with a <code>key</code> and a <code>value</code> this time.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<dt>Area of Origin</dt>
-							<dd>The Sword Coast</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Area of Origin', 'The Sword Coast']
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Area%20of%20Origin%22%2C%22The%20Sword%20Coast%22%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
 			<h3>Key with multiple values</h3>
-			<p>You can have a single <code>key</code> with multiple <code>values</code>, just keep adding <code>DD</code> elements.
+			<p>You can have a single <code>key</code> with multiple <code>values</code>, just make the <code>value</code> part of the <code>Map</code>-like <code>Array</code> an <code>Array</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<dt>The Teeming Hive of Evil</dt>
-							<dd>Skullport</dd>
-							<dd>Port of Shadows</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['The Teeming Hive of Evil', ['Skullport', 'Port of Shadows']]
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22The%20Teeming%20Hive%20of%20Evil%22%2C%5B%22Skullport%22%2C%22Port%20of%20Shadows%22%5D%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
 			<h3>Multiple keys with single value</h3>
-			<p>Of course you could flip it around and use several <code>keys</code> for a single <code>value</code>.
+			<p>Of course you could flip it around and use several <code>keys</code> for a single <code>value</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<dt>Facial Tentacles</dt>
-							<dt>Potent Psionics</dt>
-							<dd>Mind Flayer</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								[['Facial Tentacles', 'Potent Psionics'], 'Mind Flayer']
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%5B%22Facial%20Tentacles%22%2C%22Potent%20Psionics%22%5D%2C%22Mind%20Flayer%22%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
 			<h3>Multiple keys with multiple values</h3>
-			<p>It comes naturally that you can have several <code>keys</code> together with several <code>values</code>.
+			<p>It comes naturally that you can have several <code>keys</code> together with several <code>values</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<dt>Magic-user</dt>
-							<dt>Undead</dt>
-							<dd>Lich</dd>
-							<dd>Vampire</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								[['Magic-user', 'Undead'], ['Lich', 'Vampire']]
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%5B%22Magic-user%22%2C%22Undead%22%5D%2C%5B%22Lich%22%2C%22Vampire%22%5D%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
 			<h3>Multiple sets of key-values</h3>
-			<section data-ts="Note">
-				<i class="ts-icon-warning"></i>
-				<p>Due to the high intensity of the <code>CSS</code> code, we don't support adding commas, colons and dashes to a <code>DL</code> with several sets of <code>DT</code> and <code>DD</code> elements without separation. If that is what you'd like to do, please choose a method from below.</p>
-			</section>
-			<p>If you want to have several <code>key</code>/<code>value</code> sets in a single tag, you have two options:</p>
-			<p>You can follow the W3C spec and just use separate <code>DL</code> elements:</p>
+			<p>If you want to have several <code>key</code>/<code>value</code> sets in a single tag, just have more entries in your <code>Map</code>-like <code>Array</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<dt>Acererak</dt>
-						</dl>
-						<dl>
-							<dt>Hobbies</dt>
-							<dd>Building Dungeons</dd>
-						</dl>
-						<dl>
-							<dt>Alignment</dt>
-							<dd>Lawful</dd>
-							<dd>Evil</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Acererak'],
+								['Alignment', ['Lawful', 'Evil']],
+								['Hobbies', 'Building Dungeons'],
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Acererak%22%5D%2C%5B%22Alignment%22%2C%5B%22Lawful%22%2C%22Evil%22%5D%5D%2C%5B%22Hobbies%22%2C%22Building%20Dungeons%22%5D%5D"
+					/>
 				</script>
-				<output/>
-			</figure>
-			<p>Or you can follow the WHATWG spec and place <code>DIV</code> elements around each set:</p>
-			<figure data-ts="DoxMarkup">
-				<script>
-					<figure data-ts="Tag">
-						<dl>
-							<div>
-								<dt>Acererak</dt>
-							</div>
-							<div>
-								<dt>Hobbies</dt>
-								<dd>Building Dungeons</dd>
-							</div>
-							<div>
-								<dt>Alignment</dt>
-								<dd>Lawful</dd>
-								<dd>Evil</dd>
-							</div>
-						</dl>
-					</figure>
-				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
-			<h3>Optional icon</h3>
+			<h3>Icon</h3>
 			<p>Just like above, you can add an icon next to any combinaton of <code>keys</code> and <code>values</code>.</p>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<figcaption>
-							<i class="ts-icon-rating" />
-						</figcaption>
-						<dl>
-							<dt>Dungeon</dt>
-							<dd>Tomb of Horrors</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Dungeon', 'Tomb of Horrors']
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.icon="ts-icon-rating"
+						data-ts.data="%5B%5B%22Dungeon%22%2C%22Tomb%20of%20Horrors%22%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
-		</section>
-		<section>
-			<h3>Optional clickability</h3>
-			<p>If you want to make your tag look like it can be clicked, add the <code>ts-tag-clickable</code> class to the <code>FIGURE</code>.</p>
-			<p>Don't forget to set some sort of <code>click</code> handler on the <code>FIGURE</code> element.</p>
+
+			<p>This also works with the <a data-ts="Button" href="/#components/userimages/index.html"><code>UserImages</code></a>, altough they will be fixed at <code>22x22</code> pixels.</p>
+
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag" class="ts-tag-clickable" onclick="ts.ui.Notification.success('Tag disintegrated!')">
-						<figcaption>
-							<i class="ts-icon-view" />
-						</figcaption>
-						<dl>
-							<dt>Vision</dt>
-							<dd>Blindsight</dd>
-							<dd>Truesight</dd>
-							<dd>Darkvision</dd>
-						</dl>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Lich', 'Acererak']
+							]
+						));
+						const userimage = encodeURIComponent(JSON.stringify(
+							{
+								item: 'userimage',
+								name: 'Acererak',
+								src: 'assets/acererak.png'
+							}
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.icon="%7B%22item%22%3A%22userimage%22%2C%22name%22%3A%22Acererak%22%2C%22src%22%3A%22assets%2Facererak.png%22%7D"
+						data-ts.data="%5B%5B%22Lich%22%2C%22Acererak%22%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
-			<h3>Optional delete button</h3>
-			<p>If you want to be able to remove a tag, add a <code>DEL</code> element as the last child.</p>
+			<h3>Clickable look & click handler</h3>
+			<p>If you want to make your tag look like it can be clicked, once you've initialized your tag, set the <code>onclick</code> handler.</p>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-clickable', tag => {
+						tag.onclick = () => {
+							ts.ui.Notification.success('Do you see?');
+						};
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+							]
+						));
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-clickable', tag => {
+								tag.onclick = () => {
+									ts.ui.Notification.success('Do you see?');
+								};
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-clickable"
+						data-ts="Tag"
+						data-ts.icon="ts-icon-view"
+						data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D"
+					/>
+				</script>
+				<output />
+			</figure>
+
+			<p>You can use your own click handler if you'd like.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-info"></i>
+				<p>Make sure to set <code>data-ts.clickable="true"</code>, otherwise your tag won't look like it's clickable.</p>
+			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-clickable-ownhandler', tag => {
+						tag.element.addEventListener('click', e => {
+							ts.ui.Notification.success('Do you see?');
+						});
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+							]
+						));
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-clickable-ownhandler', tag => {
+								tag.element.addEventListener('click', e => {
+									ts.ui.Notification.success('Do you see?');
+								});
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-clickable-ownhandler"
+						data-ts="Tag"
+						data-ts.clickable="true"
+						data-ts.icon="ts-icon-view"
+						data-ts.data="%5B%5B%22Vision%22%2C%5B%22Blindsight%22%2C%22Truesight%22%2C%22Darkvision%22%5D%5D%5D"
+					/>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Delete button & delete handler</h3>
+			<p>If you want to be able to remove a tag, once you've initialized the tag, set the <code>ondelete</code> handler. This will create a <code>DEL</code> element as the last child of the tag.</p>
 			<section data-ts="Note">
 				<i class="ts-icon-warning"></i>
 				<p>When the <code>DEL</code> element is clicked, the tag will be removed from the DOM after a <code>setTimeout</code>. Don't try to read anything through the DOM at this point.</p>
 			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-deletable', tag => {
+						tag.ondelete = () => {
+							ts.ui.Notification.info('Tag disintegrated!');
+						}
+					});
+				});
+			</script>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag">
-						<figcaption>
-							<i class="ts-icon-discovery" />
-						</figcaption>
-						<dl>
-							<dt>Languages</dt>
-							<dd>Sylvan</dd>
-							<dd>Common</dd>
-							<dd>Draconic</dd>
-							<dd>Giant</dd>
-						</dl>
-						<del onclick="ts.ui.Notification.info('Languages forgotten.')"></del>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
+							]
+						));
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-deletable', tag => {
+								tag.ondelete = () => {
+									ts.ui.Notification.info('Tag disintegrated!');
+								}
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-deletable"
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
+			</figure>
+
+			<p>Just like with <code>click</code>, you can use your own click handler for deletion if you'd like.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-warning"></i>
+				 <p>You have to remember that only react when the user clicks on the <code>DEL</code> element by checking for <code>e.target.localName</code>.</p>
+			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-deletable-ownhandler', tag => {
+						tag.element.addEventListener('click', e => {
+							console.log('clicked', e);
+							if (e.target.localName === 'del') {
+								ts.ui.Notification.info('Tag disintegrated!');
+							}
+						});
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
+							]
+						));
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-deletable-ownhandler', tag => {
+								tag.element.addEventListener('click', e => {
+									if (e.target.localName === 'del') {
+										ts.ui.Notification.info('Tag disintegrated!');
+									}
+								});
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-deletable-ownhandler"
+						data-ts="Tag"
+						data-ts.deletable="true"
+						data-ts.data="%5B%5B%22Languages%22%2C%5B%22Sylvan%22%2C%22Common%22%2C%22Draconic%22%2C%22Giant%22%5D%5D%5D"
+					/>
+				</script>
+				<output />
 			</figure>
 		</section>
 		<section>
-			<h3>Optional locked look</h3>
-			<p>If you want to lock down a tag, use the <code>ts-tag-locked</code> class on the <code>FIGURE</code>.</p>
+			<h3>Click & delete</h3>
+			<p>In case you want to handle <code>clicks</code> and have a <code>delete</code> button on the same tag, you can do that the same way as above.</p>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-delete-click', tag => {
+						tag.onclick = () => {
+							ts.ui.Notification.info('Don\'t poke the beholder!');
+						};
+						tag.ondelete = () => {
+							ts.ui.Notification.warning('I hope you know what you\'re doing...');
+						}
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Beholder', 'Xanathar']
+							]
+						));
+						const icon = encodeURIComponent(JSON.stringify(
+							{
+								item: 'userimage',
+								name: 'Xanathar',
+								src: 'assets/xanathar.png'
+							}
+						));
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-delete-click', tag => {
+								tag.onclick = () => {
+									ts.ui.Notification.info('Don\'t poke the beholder!');
+								};
+								tag.ondelete = () => {
+									ts.ui.Notification.warning('I hope you know what you\'re doing...');
+								}
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-delete-click"
+						data-ts="Tag"
+						data-ts.data="%5B%5B%22Beholder%22%2C%22Xanathar%22%5D%5D"
+						data-ts.icon="%7B%22item%22%3A%22userimage%22%2C%22name%22%3A%22Xanathar%22%2C%22src%22%3A%22assets%2Fxanathar.png%22%7D"
+					/>
+				</script>
+				<output />
+			</figure>
+
+			<p>You can always handle your own <code>clicks</code> if that's what you're into.</p>
 			<section data-ts="Note">
 				<i class="ts-icon-warning"></i>
-				<p>A locked tag will have its <code>DEL</code> button hidden.</p>
+				 <p>You still have to remember that only handle the <code>delete</code> <code>click</code> when the user clicks on the <code>DEL</code> element by checking for <code>e.target.localName</code>.</p>
+			</section>
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-delete-click-ownhandler', tag => {
+						tag.element.addEventListener('click', e => {
+							if (e.target.localName === 'del') { // This is an important line!
+								ts.ui.Notification.warning('I hope you know what you\'re doing...');
+							} else {
+								ts.ui.Notification.info('Don\'t poke the beholder!');
+							}
+						});
+					});
+				});
+			</script>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Beholder', 'Xanathar']
+							]
+						));
+						const icon = encodeURIComponent(JSON.stringify(
+							{
+								item: 'userimage',
+								name: 'Xanathar',
+								src: 'assets/xanathar.png'
+							}
+						));
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-delete-click-ownhandler', tag => {
+								tag.element.addEventListener('click', e => {
+									if (e.target.localName === 'del') {
+										ts.ui.Notification.warning('I hope you know what you\'re doing...');
+									} else {
+										ts.ui.Notification.info('Don\'t poke the beholder!');
+									}
+								});
+							});
+						});
+					</scrxpt>
+					<figure
+						id="tag-delete-click-ownhandler"
+						data-ts="Tag"
+						data-ts.clickable="true"
+						data-ts.deletable="true"
+						data-ts.data="%5B%5B%22Beholder%22%2C%22Xanathar%22%5D%5D"
+						data-ts.icon="%7B%22item%22%3A%22userimage%22%2C%22name%22%3A%22Xanathar%22%2C%22src%22%3A%22assets%2Fxanathar.png%22%7D"
+					/>
+				</script>
+				<output />
+			</figure>
+		</section>
+		<section>
+			<h3>Locked look</h3>
+			<p>If you want to lock down a tag, use <code>data-ts.locked="true"</code>.</p>
+			<section data-ts="Note">
+				<i class="ts-icon-info"></i>
+				<p>A locked tag will have its <code>DEL</code> button hidden and all <code>click</code>-related styling deactivated.</p>
 			</section>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag" class="ts-tag-locked">
-						<figcaption>
-							<i class="ts-icon-location" />
-						</figcaption>
-						<dl>
-							<dt>Dungeon</dt>
-							<dd>Hidden Shrine of Tamoachan</dd>
-						</dl>
-						<del onclick="ts.ui.Notification.info('I am not visible anyway.')"></del>
-					</figure>
+					<scrxpt>
+						const data = encodeURIComponent(JSON.stringify(
+							[
+								['Dungeon', 'Hidden Shrine of Tamoachan']
+							]
+						));
+					</scrxpt>
+					<figure
+						data-ts="Tag"
+						data-ts.icon="ts-icon-location"
+						data-ts.locked="true"
+						data-ts.data="%5B%5B%22Dungeon%22%2C%22Hidden%20Shrine%20of%20Tamoachan%22%5D%5D"
+					/>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
 		<section>
 			<h3>List of Tags</h3>
 			<p>Whenever you put tags one after another, they will be displayed in an <code>inline</code> fashion.
+			<script>
+				ts.ui.ready(() => {
+					ts.ui.get('#tag-lich', tag => {
+						tag.data = new Map([
+							['Lich', 'Acererak']
+						]);
+						tag.icon = {
+							item: 'userimage',
+							name: 'Acererak',
+							src: 'assets/acererak.png'
+						};
+					});
+					ts.ui.get('#tag-beholder', tag => {
+						tag.data = new Map([
+							['Beholder', 'Xanathar']
+						]);
+						tag.icon = {
+							item: 'userimage',
+							name: 'Xanathar',
+							src: 'assets/xanathar.png'
+						};
+					});
+				});
+			</script>
 			<figure data-ts="DoxMarkup">
 				<script>
-					<figure data-ts="Tag" class="ts-tag-locked">
-						<figcaption>
-							<img
-								data-ts="UserImage"
-								src="assets/Acererak.png"
-								alt="Acererak"
-								width="22"
-								height="22"
-							/>
-						</figcaption>
-						<dl>
-							<dt>Lich</dt>
-							<dd>Acererak</dd>
-						</dl>
-					</figure>
-					<figure data-ts="Tag">
-						<figcaption>
-							<img
-								data-ts="UserImage"
-								src="assets/xanathar.png"
-								alt="Xanathar"
-								width="22"
-								height="22"
-							/>
-						</figcaption>
-						<dl>
-							<dt>Beholder</dt>
-							<dd>Xanathar</dd>
-						</dl>
-						<del onclick="ts.ui.Notification.warning('I hope you know what you\'re doing...')"></del>
-					</figure>
+					<scrxpt>
+						ts.ui.ready(() => {
+							ts.ui.get('#tag-lich', tag => {
+								tag.data = new Map([
+									['Lich', 'Acererak']
+								]);
+								tag.icon = {
+									item: 'userimage',
+									name: 'Acererak',
+									src: 'assets/acererak.png'
+								};
+							});
+							ts.ui.get('#tag-beholder', tag => {
+								tag.data = new Map([
+									['Beholder', 'Xanathar']
+								]);
+								tag.icon = {
+									item: 'userimage',
+									name: 'Xanathar',
+									src: 'assets/xanathar.png'
+								};
+							});
+						});
+					</scrxpt>
+					<div>
+						<figure
+							id="tag-lich"
+							data-ts="Tag"
+						/>
+						<figure
+							id="tag-beholder"
+							data-ts="Tag"
+						/>
+					</div>
 				</script>
-				<output/>
+				<output />
 			</figure>
 		</section>
+
 		<section>
 			<h3>List of Tags (maximized)</h3>
-			<p>If you would rather have them stack like <code>block</code> elements, place them inside a <code>UL</code> element with <code>data-ts="Tags"</code>.
-			<figure data-ts="DoxMarkup">
-				<script>
-					<ul data-ts="Tags">
-						<li>
-							<figure data-ts="Tag" class="ts-tag-locked">
-								<figcaption>
-									<img
-										data-ts="UserImage"
-										src="assets/Acererak.png"
-										alt="Acererak"
-										width="22"
-										height="22"
-									/>
-								</figcaption>
-								<dl>
-									<dt>Lich</dt>
-									<dd>Acererak</dd>
-								</dl>
-							</figure>
-						</li>
-						<li>
-							<figure data-ts="Tag">
-								<figcaption>
-									<img
-										data-ts="UserImage"
-										src="assets/xanathar.png"
-										alt="Xanathar"
-										width="22"
-										height="22"
-									/>
-								</figcaption>
-								<dl>
-									<dt>Beholder</dt>
-									<dd>Xanathar</dd>
-								</dl>
-								<del onclick="ts.ui.Notification.warning('I hope you know what you\'re doing...')"></del>
-							</figure>
-						</li>
-					</ul>
-				</script>
-				<output/>
-			</figure>
+			<section data-ts="Note">
+				<i class="ts-icon-todo"></i>
+				<p>This API is under construction.</p>
+			</section>
 		</section>
 	</article>
 </main>

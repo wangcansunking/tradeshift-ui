@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Labels</title>
+	<object data="tabs.xhtml"></object>
+</head>
+<body>
+<header data-ts="TopBar"></header>
+<main data-ts="Main" class="doc-tags">
+	<article>
+		<h1>Labels</h1>
+		<section class="desc">
+			<p>Labels represent a non-interactive keyword that help label, organize, and categorize objects.</p>
+		</section>
+		<section>
+			<h3>Label Markup</h3>
+			<p>When building the <code>HTML</code> for the label yourself, this is how it should look:</p>
+			<figure data-ts="DoxMarkup">
+				<script>
+					<!--
+						Always use a FIGURE element,
+						Add the appropriate color scheme class.
+					-->
+					<figure data-ts="Tag" class="ts-warning">
+						<!--
+							If you want to have an icon use a FIGCAPTION.
+						-->
+						<figcaption><i class="ts-icon-warning" /></figcaption>
+						<!--
+							You should have a single DL element.
+						-->
+						<dl>
+							<!--
+								If you want the styling to be title-like (uppercase & bold), use a single DT.
+							-->
+							<dt>Charmed</dt>
+							<!--
+								If you want the styling to be paragraph-like (normal case), use a single DD.
+							-->
+							<dd>Prone</dd>
+						</dl>
+					</figure>
+				</script>
+			</figure>
+			<p>This is how the code from above will look in action (<code>DT</code> and <code>DD</code> variants manually separated):</p>
+			<div class="doc-showcase">
+				<figure data-ts="Tag" class="ts-warning">
+					<figcaption><i class="ts-icon-heart" /></figcaption>
+					<dl>
+						<dt>Charmed</dt>
+					</dl>
+				</figure>
+				<figure data-ts="Tag" class="ts-warning">
+					<figcaption><i class="ts-icon-pin" /></figcaption>
+					<dl>
+						<dd>Prone</dd>
+					</dl>
+				</figure>
+			</div>
+		</section>
+		<section>
+			<h3>Available colors</h3>
+			<div class="doc-showcase">
+				<figure data-ts="Tag" class="ts-danger">
+					<figcaption>
+						<i class="ts-icon-halt" />
+					</figcaption>
+					<dl>
+						<dt>dt.ts-danger</dt>
+					</dl>
+				</figure>
+				<figure data-ts="Tag" class="ts-danger">
+					<figcaption>
+						<i class="ts-icon-halt" />
+					</figcaption>
+					<dl>
+						<dd>dd.ts-danger</dd>
+					</dl>
+				</figure>
+				<br />
+				<figure data-ts="Tag" class="ts-warning">
+					<figcaption>
+						<i class="ts-icon-warning" />
+					</figcaption>
+					<dl>
+						<dt>dt.ts-warning</dt>
+					</dl>
+				</figure>
+				<figure data-ts="Tag" class="ts-warning">
+					<figcaption>
+						<i class="ts-icon-warning" />
+					</figcaption>
+					<dl>
+						<dd>dd.ts-warning</dd>
+					</dl>
+				</figure>
+				<br />
+				<figure data-ts="Tag" class="ts-success">
+					<figcaption>
+						<i class="ts-icon-info" />
+					</figcaption>
+					<dl>
+						<dt>dt.ts-success</dt>
+					</dl>
+				</figure>
+				<figure data-ts="Tag" class="ts-success">
+					<figcaption>
+						<i class="ts-icon-info" />
+					</figcaption>
+					<dl>
+						<dd>dd.ts-success</dd>
+					</dl>
+				</figure>
+				<br />
+				<figure data-ts="Tag" class="ts-blue">
+					<figcaption>
+						<i class="ts-icon-pay" />
+					</figcaption>
+					<dl>
+						<dt>dt.ts-blue</dt>
+					</dl>
+				</figure>
+				<figure data-ts="Tag" class="ts-blue">
+					<figcaption>
+						<i class="ts-icon-pay" />
+					</figcaption>
+					<dl>
+						<dd>dd.ts-blue</dd>
+					</dl>
+				</figure>
+			</div>
+		</section>
+	</article>
+</main>
+</body>
+</html>

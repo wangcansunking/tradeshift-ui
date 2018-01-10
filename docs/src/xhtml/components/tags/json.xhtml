@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tags JSON API</title>
+	<title>JSON</title>
 	<object data="tabs.xhtml"></object>
 </head>
 <body>
@@ -283,8 +283,7 @@
 							ts.ui.get('#tag-optclick', tag => {
 								tag.render({
 									onclick: () => {
-										console.log(arguments);
-										ts.ui.Notification.success('yea!');
+										ts.ui.Notification.success('Do you see?');
 									},
 									data: new Map([
 										['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
@@ -310,7 +309,7 @@
 							ts.ui.get('#tag-optdel', tag => {
 								tag.render({
 									ondelete: () => {
-										ts.ui.Notification.info('Languages forgotten.');
+										ts.ui.Notification.info('Tag disintegrated!');
 									},
 									data: new Map([
 										['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]

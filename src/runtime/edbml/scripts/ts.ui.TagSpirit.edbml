@@ -1,18 +1,21 @@
 <!DOCTYPE edbml>
 <script>
 	<?input name="tag" type="ts.ui.TagModel"?>
+	var Markdown = ts.ui.Markdown;
 
-	var hascpt = tag.icon || tag.label;
+	var hasico = tag.icon;
+	var isicon = hasico && typeof tag.icon === 'string';
+	var isitem = hasico && tag.icon.item
 	var hasdat = tag.data.size;
-	var hasdel = tag._deletable;
+	var hasdel = tag.deletable;
 	var dohack = tag.tempdirtyflag;
 
-	if (hascpt) {
+	if (isicon || isitem) {
 		<figcaption>
-			if (tag.icon) {
+			if (isicon) {
 				<i class="${tag.icon}"></i>
-			} else if (tag.label) {
-				out.html += tag.label;
+			} else {
+				out.html += tag.icon.render();
 			}
 		</figcaption>
 	}
@@ -41,9 +44,13 @@
 	}
 
 	function dt(term) {
-		<dt>${term}</dt>
+		<dt>
+			out.html += Markdown.parse(term);
+		</dt>
 	}
 	function dd(definition) {
-		<dd>${definition}</dd>
+		<dd>
+			out.html += Markdown.parse(definition);
+		</dd>
 	}
 </script>
