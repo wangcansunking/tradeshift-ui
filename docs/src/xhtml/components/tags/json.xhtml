@@ -10,63 +10,10 @@
 	<article>
 		<h1>Tags JSON API</h1>
 		<section class="desc">
-			<p>WIP</p>
+			<p>The examples shown here are the exact same ones as under the Tag tab, just using a slightly different notation.</p>
 		</section>
 		<section>
-			<div data-ts="DoxApi">
-				<script type="application/json">
-					{
-						name: "ts.ui.TagModel",
-						properties: [
-							{
-								name: "type",
-								type: "string",
-								desc: "The CSS classname."
-							},
-							{
-								name: "icon",
-								type: "string",
-								desc: "The icon's classname."
-							},
-							{
-								name: "tabindex",
-								type: "number",
-								desc: "The `tabindex` of the tag."
-							},
-							{
-								name: "data",
-								type: "(Map|string)",
-								desc: "The `keys` and `values` of the tag or the only `key` as a string."
-							},
-							{
-								name: "locked",
-								type: "boolean",
-								desc: "Tag is locked?"
-							},
-							{
-								name: "onclick",
-								type: "(Function)",
-								desc: "Called whenever the tag gets clicked."
-							},
-							{
-								name: "ondelete",
-								type: "(Function)",
-								desc: "Called whenever the tag gets deleted."
-							}
-						],
-						methods: [
-							{
-								name: "click",
-								desc: "Trigger a click on the tag if `onclick` is set."
-							},
-							{
-								name: "delete",
-								desc: "Trigger deletion of the tag if `ondelete` is set."
-							}
-						]
-					}
-				</script>
-			</div>
+			<p>When using the JSON API, you create the <code>FIGURE</code> element with <code>data-ts="Tag"</code>, use <code>ts.ui.get()</code> get a reference to it and call <code>render()</code> to pass it a new model.</p>
 		</section>
 		<section>
 			<h3>Key-only</h3>
@@ -77,7 +24,7 @@
 							ts.ui.get('#tag-keyonly', tag => {
 								tag.render({
 									data: 'Dragons!'
-								})
+								});
 							});
 						</script>
 					</figure>
@@ -98,7 +45,7 @@
 							ts.ui.get('#tag-icononly', tag => {
 								tag.render({
 									icon: 'ts-icon-timer'
-								})
+								});
 							});
 						</script>
 					</figure>
@@ -106,6 +53,28 @@
 				<li>
 					<div class="doc-showcase">
 						<figure id="tag-icononly" data-ts="Tag"></figure>
+					</div>
+				</li>
+			</ul>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-userimageonly', tag => {
+								tag.render({
+									icon: {
+										item: 'userimage',
+										name: 'Jiminy Jim Bobby "Robert" Bobbins',
+										src: '../userimages/assets/jim.png'
+									}
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<div class="doc-showcase">
+						<figure id="tag-userimageonly" data-ts="Tag"></figure>
 					</div>
 				</li>
 			</ul>
@@ -121,7 +90,7 @@
 									data: new Map([
 										[undefined, 'Roll a d20']
 									])
-								})
+								});
 							});
 						</script>
 					</figure>
@@ -251,7 +220,7 @@
 			</ul>
 		</section>
 		<section>
-			<h3>Optional icon</h3>
+			<h3>Icon</h3>
 			<ul class="splitscreen">
 				<li>
 					<figure data-ts="DoxScript">
@@ -273,14 +242,39 @@
 					</div>
 				</li>
 			</ul>
-		</section>
-		<section>
-			<h3>Optional clickability</h3>
 			<ul class="splitscreen">
 				<li>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.get('#tag-optclick', tag => {
+							ts.ui.get('#tag-optuserimage', tag => {
+								tag.render({
+									icon: {
+										item: 'userimage',
+										name: 'Acererak',
+										src: 'assets/acererak.png'
+									},
+									data: new Map([
+										['Lich', 'Acererak']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<div class="doc-showcase">
+						<figure id="tag-optuserimage" data-ts="Tag"></figure>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<h3>Clickable look & click handler</h3>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-clickable', tag => {
 								tag.render({
 									onclick: () => {
 										ts.ui.Notification.success('Do you see?');
@@ -295,18 +289,42 @@
 				</li>
 				<li>
 					<div class="doc-showcase">
-						<figure id="tag-optclick" data-ts="Tag"></figure>
+						<figure id="tag-clickable" data-ts="Tag"></figure>
+					</div>
+				</li>
+			</ul>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-clickable-ownhandler', tag => {
+								tag.render({
+									clickable: true,
+									data: new Map([
+										['Vision', ['Blindsight', 'Truesight', 'Darkvision']]
+									])
+								});
+								tag.element.addEventListener('click', e => {
+									ts.ui.Notification.success('Do you see?');
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<div class="doc-showcase">
+						<figure id="tag-clickable-ownhandler" data-ts="Tag"></figure>
 					</div>
 				</li>
 			</ul>
 		</section>
 		<section>
-			<h3>Optional delete button</h3>
+			<h3>Delete button & delete handler</h3>
 			<ul class="splitscreen">
 				<li>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.get('#tag-optdel', tag => {
+							ts.ui.get('#tag-deletable', tag => {
 								tag.render({
 									ondelete: () => {
 										ts.ui.Notification.info('Tag disintegrated!');
@@ -321,13 +339,98 @@
 				</li>
 				<li>
 					<div class="doc-showcase">
-						<figure id="tag-optdel" data-ts="Tag"></figure>
+						<figure id="tag-deletable" data-ts="Tag"></figure>
+					</div>
+				</li>
+			</ul>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-deletable-ownhandler', tag => {
+								tag.render({
+									deletable: true,
+									data: new Map([
+										['Languages', ['Sylvan', 'Common', 'Draconic', 'Giant']]
+									])
+								});
+								tag.element.addEventListener('click', e => {
+									if (e.target.localName === 'del') {
+										ts.ui.Notification.info('Tag disintegrated!');
+									}
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<div class="doc-showcase">
+						<figure id="tag-deletable-ownhandler" data-ts="Tag"></figure>
+					</div>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Click & delete</h3>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-delete-click', tag => {
+								tag.render({
+									onclick: () => {
+										ts.ui.Notification.info('Don\'t poke the beholder!');
+									},
+									ondelete: () => {
+										ts.ui.Notification.warning('I hope you know what you\'re doing...');
+									},
+									data: new Map([
+										['Beholder', 'Xanathar']
+									])
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<div class="doc-showcase">
+						<figure id="tag-delete-click" data-ts="Tag"></figure>
+					</div>
+				</li>
+			</ul>
+			<ul class="splitscreen">
+				<li>
+					<figure data-ts="DoxScript">
+						<script type="runnable">
+							ts.ui.get('#tag-delete-click-ownhandler', tag => {
+								tag.render({
+									clickable: true,
+									deletable: true,
+									data: new Map([
+										['Beholder', 'Xanathar']
+									])
+								});
+								tag.element.addEventListener('click', e => {
+									if (e.target.localName === 'del') { // This is an important line!
+										ts.ui.Notification.warning('I hope you know what you\'re doing...');
+									} else {
+										ts.ui.Notification.info('Don\'t poke the beholder!');
+									}
+								});
+							});
+						</script>
+					</figure>
+				</li>
+				<li>
+					<div class="doc-showcase">
+						<figure id="tag-delete-click-ownhandler" data-ts="Tag"></figure>
 					</div>
 				</li>
 			</ul>
 		</section>
 		<section>
-			<h3>Optional locked look</h3>
+			<h3>Locked look</h3>
 			<ul class="splitscreen">
 				<li>
 					<figure data-ts="DoxScript">
@@ -335,10 +438,6 @@
 							ts.ui.get('#tag-optlock', tag => {
 								tag.render({
 									locked: true,
-									ondelete: () => {
-										ts.ui.Notification.info('I am not visible anyway.');
-									},
-									icon: 'ts-icon-location',
 									data: new Map([
 										['Dungeon', 'Hidden Shrine of Tamoachan']
 									])
@@ -360,21 +459,28 @@
 				<li>
 					<figure data-ts="DoxScript">
 						<script type="runnable">
-							ts.ui.get('#tags-elem1', tag => {
+							ts.ui.get('#tags-lich', tag => {
 								tag.render({
 									data: new Map([
 										['Lich', 'Acererak']
-									])
+									]),
+									icon: {
+										item: 'userimage',
+										name: 'Acererak',
+										src: 'assets/acererak.png'
+									}
 								});
 							});
-							ts.ui.get('#tags-elem2', tag => {
+							ts.ui.get('#tags-beholder', tag => {
 								tag.render({
-									ondelete: () => {
-										ts.ui.Notification.warning('I hope you know what you\'re doing...');
-									},
 									data: new Map([
 										['Beholder', 'Xanathar']
-									])
+									]),
+									icon: {
+										item: 'userimage',
+										name: 'Xanathar',
+										src: 'assets/xanathar.png'
+									}
 								});
 							});
 						</script>
@@ -382,8 +488,8 @@
 				</li>
 				<li>
 					<div class="doc-showcase">
-						<figure id="tags-elem1" data-ts="Tag"></figure>
-						<figure id="tags-elem2" data-ts="Tag"></figure>
+						<figure id="tags-lich" data-ts="Tag"></figure>
+						<figure id="tags-beholder" data-ts="Tag"></figure>
 					</div>
 				</li>
 			</ul>

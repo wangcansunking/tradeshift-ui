@@ -1,7 +1,6 @@
 <!DOCTYPE edbml>
 <script>
 	<?input name="tag" type="ts.ui.TagModel"?>
-	var Markdown = ts.ui.Markdown;
 
 	var hasico = tag.icon;
 	var isicon = hasico && typeof tag.icon === 'string';
@@ -39,18 +38,15 @@
       </dl>
 		});
 	}
+	
 	if (hasdel) {
 		<del></del>
 	}
 
-	function dt(term) {
-		<dt>
-			out.html += Markdown.parse(term);
-		</dt>
+	function dt(key) {
+		<dt>${key}</dt>
 	}
-	function dd(definition) {
-		<dd>
-			out.html += Markdown.parse(definition);
-		</dd>
+	function dd(val) {
+		<dd>${val}</dd>
 	}
 </script>

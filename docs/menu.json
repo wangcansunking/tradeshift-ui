@@ -141,7 +141,7 @@
 			{
 				"label": "Tags & Labels",
 				"icon": "docs-icon-tag-2",
-				"path": "components/tags/tags.html"
+				"path": "components/tags/tag.html"
 			},
 			{
 				"label": "Table",

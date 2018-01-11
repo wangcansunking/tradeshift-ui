@@ -3,9 +3,9 @@
  * @extends {ts.ui.Model}
  * @using {gui.Combo#chained} chained
  * @using {gui.Arguments#confirmed} confirmed
- * @using {gui.Type} Type
+ * @using {gui.Type.isFunction} isFunction
  */
-ts.ui.TagModel = (function using(chained, confirmed, Type) {
+ts.ui.TagModel = (function using(chained, confirmed, isFunction) {
 	return ts.ui.Model.extend({
 		/**
 		 * Friendly name.
@@ -27,8 +27,8 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		tabindex: -1,
 
 		/**
-		 * Tag icon or userimage.
-		 * @type {string|ts.ui.UserImageModel}
+		 * Tag icon or JSON representation of {ts.ui.UserImageModel|ts.ui.IconModel}.
+		 * @type {string|object}
 		 */
 		icon: {
 			getter: function() {
@@ -37,21 +37,27 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			setter: confirmed('(string|object)')(function(icon) {
 				if (typeof icon === 'object') {
 					if (icon.item) {
+						var ModelC;
 						switch (icon.item) {
 							case 'icon':
-								icon = new ts.ui.IconModel(icon);
+								ModelC = ts.ui.IconModel(icon);
 								break;
 							case 'userimage':
-								icon.size = ts.ui.UNIT;
-								icon = new ts.ui.UserImageModel(icon);
+								icon.size = 22; // always 22x22px
+								ModelC = ts.ui.UserImageModel(icon);
+								break;
+							default:
+								console.error('Unknown item: "' + icon.item + '" in ts.ui.Tag instance.');
 								break;
 						}
+						this._icon = new ModelC(icon);
 					} else {
 						console.error('"icon.item" is not defined in ts.ui.Tag instance.');
 						return;
 					}
+				} else {
+					this._icon = icon;
 				}
-				this._icon = icon;
 				this.$dirty();
 			})
 		},
@@ -66,7 +72,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			},
 			setter: confirmed('(function)')(function(onclick) {
 				this._onclick = onclick;
-				this.clickable = !!onclick;
+				this.clickable = isFunction(onclick);
 				this.$dirty();
 			})
 		},
@@ -81,7 +87,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			},
 			setter: confirmed('(function)')(function(ondelete) {
 				this._ondelete = ondelete;
-				this.deletable = !!ondelete;
+				this.deletable = isFunction(ondelete);
 				this.$dirty();
 			})
 		},
@@ -131,7 +137,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		 * @returns {ts.ui.TagModel}
 		 */
 		click: chained(function() {
-			if (Type.isFunction(this.onclick)) {
+			if (isFunction(this.onclick)) {
 				setTimeout(
 					function unfreeze() {
 						this.onclick();
@@ -146,7 +152,7 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		 * @returns {ts.ui.TagModel}
 		 */
 		delete: chained(function() {
-			if (Type.isFunction(this.ondelete)) {
+			if (isFunction(this.ondelete)) {
 				setTimeout(
 					function unfreeze() {
 						this.ondelete();
@@ -156,6 +162,10 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 			}
 		}),
 
+		/**
+		 * Bounce model to HTML
+		 * @returns {string}
+		 */
 		render: function() {
 			return ts.ui.tag.edbml(this);
 		},
@@ -168,9 +178,24 @@ ts.ui.TagModel = (function using(chained, confirmed, Type) {
 		 */
 		_data: null,
 
+		/**
+		 * Tag icon.
+		 * @type {string|ts.ui.UserImageModel}
+		 * @private
+		 */
 		_icon: null,
 
+		/**
+		 * Open for implementation: Called when the user clicks tag.
+		 * @type {Function}
+		 * @private
+		 */
 		_onclick: null,
+		/**
+		 * Open for implementation: Called when the user clicks DEL on tag.
+		 * @type {Function}
+		 * @private
+		 */
 		_ondelete: null
 	});
-})(gui.Combo.chained, gui.Arguments.confirmed, gui.Type);
+})(gui.Combo.chained, gui.Arguments.confirmed, gui.Type.isFunction);

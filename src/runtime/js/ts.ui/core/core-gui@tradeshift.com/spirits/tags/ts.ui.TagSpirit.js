@@ -7,36 +7,35 @@
  * @using {gui.Object.each} objEach
  */
 ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, objEach) {
-	/*
-	 * We'll make the spirit interface identical to the model interface so
-	 * that we can use them interchangeably whenever one makes more sense.
-	*/
-	var methodnames = ['onclick', 'ondelete'];
-
 	var CLASS_LOCKED = 'ts-tag-locked';
 	var CLASS_CLICKABLE = 'ts-tag-clickable';
 	var CLASS_DELETABLE = 'ts-tag-deletable';
 
 	return ts.ui.Spirit.extend({
+		// Lifecycle ...............................................................
+		/**
+		 * Setup. Set a default empty model.
+		 */
 		onconstruct: function() {
 			this.super.onconstruct();
 			this.model();
 			this.event.add('click', this.element, this, true);
 		},
 
+		/**
+		 * Make sure we're in a FIGURE element.
+		 */
 		onconfigure: function() {
 			this.super.onconfigure();
 			if (this.dom.tag() !== 'figure') {
-				throw new SyntaxError(
-					'The component ts.ui.Tag must be inserted into a <figure /> element.'
-				);
+				throw new SyntaxError('The component ts.ui.Tag must be inserted into a FIGURE element.');
 			}
 		},
 
-		onenter: function() {
-			this.super.onenter();
-		},
-
+		/**
+		 * Handle model changes.
+		 * @param {Array<edb.Change>} changes
+		 */
 		onchange: function(changes) {
 			this.super.onchange();
 			var spirit = this;
@@ -48,50 +47,10 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 			});
 		},
 
-		_update: function(c) {
-			var model = this._model;
-			if (model.tabindex !== null) {
-				this.att.set('tabindex', model.tabindex);
-			} else {
-				this.att.del('tabindex');
-			}
-
-			var typeArr = (model.type + '').split(' ');
-			var clickableType = typeArr.indexOf(CLASS_CLICKABLE) !== -1;
-			var lockedType = typeArr.indexOf(CLASS_LOCKED) !== -1;
-			var deletableType = typeArr.indexOf(CLASS_DELETABLE) !== -1;
-
-			var oldType, newType;
-			if (c.name === 'type') {
-				if (c.oldValue) {
-					oldType = (c.oldValue + '').split(' ');
-					this.css.remove(oldType);
-				}
-				if (c.newValue) {
-					newType = (c.newValue + '').split(' ');
-					this.css.add(newType);
-				}
-			}
-
-			if (deletableType || model.deletable || model._ondelete) {
-				this.css.add(CLASS_DELETABLE);
-			} else {
-				this.css.remove(CLASS_DELETABLE);
-			}
-
-			if (clickableType || model.clickable || model._onclick) {
-				this.css.add(CLASS_CLICKABLE);
-			} else {
-				this.css.remove(CLASS_CLICKABLE);
-			}
-
-			if (lockedType || model.locked) {
-				this.css.add(CLASS_LOCKED);
-			} else {
-				this.css.remove(CLASS_LOCKED);
-			}
-		},
-
+		/**
+		 * Handle event.
+		 * @param {Event} e
+		 */
 		onevent: function(e) {
 			this.super.onevent(e);
 			if (e.type === 'click') {
@@ -103,21 +62,31 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 			}
 		},
 
+		/**
+		 * Release any observer when disposed.
+		 */
 		ondestruct: function() {
 			this.super.ondestruct();
 			this._model.removeObserver(this);
 			this._model.dispose();
 		},
 
+		/**
+		 * JSON scenario: The model is injected manually by some guy.
+		 * @param {JSONObject|ts.ui.TagModel} json
+		 * @returns {ts.ui.TagSpirit}
+		 */
 		render: confirmed('object')(
 			chained(function(json) {
-				this.model(ts.ui.TagModel.from(json));
+				this.model(json);
 			})
 		),
 
+		// Fake internals ..........................................................
+
 		/**
 		 * Assign or change the model (the API user is not supposed to do this!).
-		 * @param {ts.ui.TagModel} model
+		 * @param {ts.ui.TagModel=} model
 		 */
 		model: function(model) {
 			if (!model) {
@@ -174,8 +143,7 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		},
 
 		/**
-		 * No default keyboard support,
-		 * unless it has onclick or ondelete.
+		 * No default keyboard support, unless it has onclick or ondelete.
 		 * @type {number}
 		 */
 		tabindex: {
@@ -188,7 +156,7 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		},
 
 		/**
-		 * All the key and value sets
+		 * All the key and value sets.
 		 * @type {Map}
 		 */
 		data: {
@@ -213,6 +181,10 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 			})
 		},
 
+		/**
+		 * Tag is deletable? (only visually).
+		 * @type {boolean}
+		 */
 		deletable: {
 			getter: function() {
 				return this._model.deletable;
@@ -222,6 +194,10 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 			})
 		},
 
+		/**
+		 * Tag is clickable? (only visually).
+		 * @type {boolean}
+		 */
 		clickable: {
 			getter: function() {
 				return this._model.clickable;
@@ -233,6 +209,7 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 
 		/**
 		 * Open for implementation: Called when the user clicks tag.
+		 * @type {Function}
 		 */
 		onclick: {
 			getter: function() {
@@ -244,7 +221,8 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		},
 
 		/**
-		 * Open for implementation: Called when the user deletes tag.
+		 * Open for implementation: Called when the user clicks DEL on tag.
+		 * @type {Function}
 		 */
 		ondelete: {
 			getter: function() {
@@ -279,23 +257,57 @@ ts.ui.TagSpirit = (function using(chained, confirmed, isFunction, arrayFrom, obj
 		/**
 		 * The model goes here.
 		 * @type {ts.ui.TagModel}
+		 * @private
 		 */
 		_model: null,
 
 		/**
-		 * @returns {ts.ui.TagModel}
+		 * Generally update things.
+		 * @param {edb.ObjectChange} c
+		 * @private
 		 */
-		_bind: function(opt_json) {
-			var spirit = this;
-			var model = ts.ui.TagModel.from(opt_json);
-			methodnames.forEach(function(method) {
-				model[method] = function() {
-					if (isFunction(spirit[method])) {
-						spirit[method].apply(spirit, arguments);
-					}
-				};
-			});
-			return model;
+		_update: function(c) {
+			var model = this._model;
+			if (model.tabindex !== null) {
+				this.att.set('tabindex', model.tabindex);
+			} else {
+				this.att.del('tabindex');
+			}
+
+			var typeArr = (model.type + '').split(' ');
+			var clickableType = typeArr.indexOf(CLASS_CLICKABLE) !== -1;
+			var lockedType = typeArr.indexOf(CLASS_LOCKED) !== -1;
+			var deletableType = typeArr.indexOf(CLASS_DELETABLE) !== -1;
+
+			var oldType, newType;
+			if (c.name === 'type') {
+				if (c.oldValue) {
+					oldType = (c.oldValue + '').split(' ');
+					this.css.remove(oldType);
+				}
+				if (c.newValue) {
+					newType = (c.newValue + '').split(' ');
+					this.css.add(newType);
+				}
+			}
+
+			if (deletableType || model.deletable || model._ondelete) {
+				this.css.add(CLASS_DELETABLE);
+			} else {
+				this.css.remove(CLASS_DELETABLE);
+			}
+
+			if (clickableType || model.clickable || model._onclick) {
+				this.css.add(CLASS_CLICKABLE);
+			} else {
+				this.css.remove(CLASS_CLICKABLE);
+			}
+
+			if (lockedType || model.locked) {
+				this.css.add(CLASS_LOCKED);
+			} else {
+				this.css.remove(CLASS_LOCKED);
+			}
 		}
 	});
 })(
